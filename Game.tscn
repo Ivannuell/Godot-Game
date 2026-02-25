@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://AsteriodArea.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game.gd" type="Script" id=3]
+[ext_resource path="res://Entities/Weapons/AutoGun/AutoGun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://DeathSystem.gd" type="Script" id=5]
+[ext_resource path="res://Entities/Enemy_Base/Base.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Projectiles.gd" type="Script" id=7]
+[ext_resource path="res://DamageSystem.gd" type="Script" id=8]
+[ext_resource path="res://MiningSystem.gd" type="Script" id=9]
+[ext_resource path="res://Entities/Enemies/Miner/Miner.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Entities/Weapons/MiningTool/MiningTool_Player.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Entities/Enemies/Enemy/Enemy.tscn" type="PackedScene" id=12]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": "This node has reference to the Projectiles parent class which connects all gun nodes to Projectiles class so they can spawn projectile"
+}
+
+[node name="Allies" type="Node" parent="."]
+
+[node name="Miner" parent="Allies" instance=ExtResource( 10 )]
+position = Vector2( -1152, -96 )
+team = "Allies"
+
+[node name="Miner2" parent="Allies" instance=ExtResource( 10 )]
+position = Vector2( -1248, -56 )
+team = "Allies"
+
+[node name="Miner3" parent="Allies" instance=ExtResource( 10 )]
+position = Vector2( -1144, 128 )
+team = "Allies"
+
+[node name="Miner4" parent="Allies" instance=ExtResource( 10 )]
+position = Vector2( -1256, 104 )
+team = "Allies"
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Miner" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 1256, 144 )
+rotation = 6.28
+team = "Enemies"
+
+[node name="Miner2" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 1248, -88 )
+rotation = 6.28
+team = "Enemies"
+
+[node name="Miner3" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 1176, -160 )
+rotation = 6.28
+team = "Enemies"
+
+[node name="Miner4" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 1192, 200 )
+rotation = 6.28
+team = "Enemies"
+
+[node name="Projectiles" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="Player" parent="." groups=["allies"] instance=ExtResource( 1 )]
+unique_name_in_owner = true
+position = Vector2( 0, 224 )
+z_index = 51
+z_as_relative = false
+
+[node name="AutoGun" parent="Player" instance=ExtResource( 4 )]
+visible = false
+detection_radius = 200.0
+
+[node name="MiningTool_Player" parent="Player" instance=ExtResource( 11 )]
+scale = Vector2( 2.06292, 2.04793 )
+
+[node name="Asteriods" type="Node" parent="."]
+
+[node name="AsteriodArea" parent="Asteriods" instance=ExtResource( 2 )]
+scale = Vector2( 1.73749, 1.73749 )
+
+[node name="AsteriodArea2" parent="Asteriods" instance=ExtResource( 2 )]
+scale = Vector2( 5.04599, 5.04599 )
+
+[node name="AsteriodArea3" parent="Asteriods" instance=ExtResource( 2 )]
+scale = Vector2( 7.78342, 7.78342 )
+
+[node name="Systems" type="Node" parent="."]
+
+[node name="DeathSystem" type="Node" parent="Systems"]
+script = ExtResource( 5 )
+
+[node name="DamageSystem" type="Node" parent="Systems"]
+script = ExtResource( 8 )
+
+[node name="MiningSystem" type="Node" parent="Systems"]
+script = ExtResource( 9 )
+
+[node name="PlayerBase" parent="." instance=ExtResource( 6 )]
+position = Vector2( -1208, 8 )
+enemy = ExtResource( 12 )
+team = "Allies"
+
+[node name="EnemyBase" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1176, 0 )
+enemy = ExtResource( 12 )
+team = "Enemies"
