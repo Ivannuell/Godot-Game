@@ -1,0 +1,252 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Scenes/Game/Entities/Weapons/MiningTool/MiningTool_Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Game/Entities/Weapons/Launcher/MissileLauncher.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Game/Entities/Base/Base.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Game/UI/PlayerHUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Game/Entities/Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Game/Systems/DamageSystem.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Game/Systems/DeathSystem.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Game/Systems/ShootingSystem.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Game/Systems/WeaponSystem.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Game/Entities/Asteriod/AsteriodArea.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Game/UI/Shop.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/Game/Entities/Spaceships/Miner/Miner.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Game/Entities/Weapons/AutoGun/AutoGun.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Game/Entities/Spaceships/Miner/CrabShip.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/Game/Entities/Spaceships/Attacker/fighter1.png" type="Texture" id=15]
+[ext_resource path="res://Themes/default.tres" type="Theme" id=16]
+[ext_resource path="res://Scenes/Game/Game.gd" type="Script" id=17]
+[ext_resource path="res://Scenes/Game/GameStateMachine.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/Game/PauseLayer.tscn" type="PackedScene" id=19]
+
+[node name="Game" type="Node2D"]
+position = Vector2( 1712, 1960 )
+script = ExtResource( 17 )
+__meta__ = {
+"_editor_description_": "This node has reference to the Projectiles parent class which connects all gun nodes to Projectiles class so they can spawn projectile"
+}
+
+[node name="Entities" type="Node" parent="."]
+
+[node name="Allies" type="Node" parent="Entities"]
+
+[node name="Base" parent="Entities/Allies" instance=ExtResource( 3 )]
+position = Vector2( 496, 1968 )
+
+[node name="Enemies" type="Node" parent="Entities"]
+
+[node name="Miner" parent="Entities/Enemies" instance=ExtResource( 12 )]
+position = Vector2( 3488, 2096 )
+rotation = 6.28
+team = 1
+
+[node name="Miner2" parent="Entities/Enemies" instance=ExtResource( 12 )]
+position = Vector2( 3480, 1864 )
+rotation = 6.28
+team = 1
+
+[node name="Miner3" parent="Entities/Enemies" instance=ExtResource( 12 )]
+position = Vector2( 3408, 1792 )
+rotation = 6.28
+team = 1
+
+[node name="Miner4" parent="Entities/Enemies" instance=ExtResource( 12 )]
+position = Vector2( 3424, 2152 )
+rotation = 6.28
+team = 1
+
+[node name="Base" parent="Entities/Enemies" instance=ExtResource( 3 )]
+position = Vector2( 3408, 1952 )
+team = 1
+
+[node name="Player" parent="Entities" groups=["allies"] instance=ExtResource( 5 )]
+position = Vector2( 512, 2072 )
+z_index = 51
+z_as_relative = false
+
+[node name="AutoGun" parent="Entities/Player" instance=ExtResource( 13 )]
+visible = false
+detection_radius = 200.0
+
+[node name="MiningTool_Player" parent="Entities/Player" instance=ExtResource( 1 )]
+scale = Vector2( 2.06292, 2.04793 )
+
+[node name="MissileLauncher" parent="Entities/Player" instance=ExtResource( 2 )]
+
+[node name="Asteriods" type="Node" parent="Entities"]
+
+[node name="AsteriodArea" parent="Entities/Asteriods" instance=ExtResource( 10 )]
+position = Vector2( 1184, 1200 )
+scale = Vector2( 1.73749, 1.73749 )
+
+[node name="AsteriodArea2" parent="Entities/Asteriods" instance=ExtResource( 10 )]
+position = Vector2( 1184, 1200 )
+scale = Vector2( 5.04599, 5.04599 )
+
+[node name="AsteriodArea3" parent="Entities/Asteriods" instance=ExtResource( 10 )]
+position = Vector2( 1184, 1200 )
+scale = Vector2( 7.78342, 7.78342 )
+
+[node name="AsteriodArea4" parent="Entities/Asteriods" instance=ExtResource( 10 )]
+position = Vector2( 2296, 2616 )
+scale = Vector2( 1.73749, 1.73749 )
+
+[node name="AsteriodArea5" parent="Entities/Asteriods" instance=ExtResource( 10 )]
+position = Vector2( 2296, 2616 )
+scale = Vector2( 5.04599, 5.04599 )
+
+[node name="AsteriodArea6" parent="Entities/Asteriods" instance=ExtResource( 10 )]
+position = Vector2( 2296, 2616 )
+scale = Vector2( 7.78342, 7.78342 )
+
+[node name="Systems" type="Node" parent="."]
+
+[node name="DeathSystem" parent="Systems" instance=ExtResource( 7 )]
+
+[node name="DamageSystem" parent="Systems" instance=ExtResource( 6 )]
+
+[node name="ShootingSystem" parent="Systems" instance=ExtResource( 8 )]
+
+[node name="WeaponSystem" parent="Systems" instance=ExtResource( 9 )]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PlayerHUD" parent="UI" instance=ExtResource( 4 )]
+
+[node name="Shop" type="CanvasLayer" parent="UI"]
+visible = false
+script = ExtResource( 11 )
+
+[node name="Panel2" type="Panel" parent="UI/Shop"]
+margin_left = 472.0
+margin_top = 16.0
+margin_right = 704.0
+margin_bottom = 368.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/Panel2"]
+margin_right = 232.0
+margin_bottom = 208.0
+
+[node name="Label" type="Label" parent="UI/Shop/Panel2/VBoxContainer"]
+margin_right = 232.0
+margin_bottom = 16.0
+theme = ExtResource( 16 )
+text = "Factory"
+align = 1
+
+[node name="GridContainer" type="GridContainer" parent="UI/Shop/Panel2/VBoxContainer"]
+margin_top = 20.0
+margin_right = 232.0
+margin_bottom = 208.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="ItemSlot" type="MarginContainer" parent="UI/Shop/Panel2/VBoxContainer/GridContainer"]
+margin_right = 110.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 110, 180 )
+
+[node name="Panel" type="Panel" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot"]
+margin_right = 110.0
+margin_bottom = 180.0
+theme = ExtResource( 16 )
+
+[node name="Container" type="VBoxContainer" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot/Panel"]
+margin_right = 112.0
+margin_bottom = 168.0
+
+[node name="Type" type="Label" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot/Panel/Container"]
+margin_right = 112.0
+margin_bottom = 16.0
+theme = ExtResource( 16 )
+text = "Miner"
+align = 1
+
+[node name="Image" type="TextureRect" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot/Panel/Container"]
+margin_top = 20.0
+margin_right = 112.0
+margin_bottom = 122.0
+size_flags_vertical = 3
+texture = ExtResource( 14 )
+stretch_mode = 6
+
+[node name="Price" type="Label" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot/Panel/Container"]
+margin_top = 126.0
+margin_right = 112.0
+margin_bottom = 142.0
+text = "1500"
+align = 1
+
+[node name="Manufacture" type="Button" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot/Panel/Container"]
+margin_left = 6.0
+margin_top = 146.0
+margin_right = 106.0
+margin_bottom = 168.0
+rect_min_size = Vector2( 100, 20 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 16 )
+text = "Manufacture"
+clip_text = true
+icon_align = 1
+
+[node name="ItemSlot2" type="MarginContainer" parent="UI/Shop/Panel2/VBoxContainer/GridContainer"]
+margin_left = 114.0
+margin_right = 224.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 110, 180 )
+
+[node name="Panel" type="Panel" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot2"]
+margin_right = 110.0
+margin_bottom = 180.0
+theme = ExtResource( 16 )
+
+[node name="Container" type="VBoxContainer" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot2/Panel"]
+margin_right = 112.0
+margin_bottom = 168.0
+
+[node name="Type" type="Label" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot2/Panel/Container"]
+margin_right = 112.0
+margin_bottom = 16.0
+theme = ExtResource( 16 )
+text = "Attacker"
+align = 1
+
+[node name="Image" type="TextureRect" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot2/Panel/Container"]
+margin_top = 20.0
+margin_right = 112.0
+margin_bottom = 122.0
+size_flags_vertical = 3
+texture = ExtResource( 15 )
+stretch_mode = 6
+
+[node name="Price" type="Label" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot2/Panel/Container"]
+margin_top = 126.0
+margin_right = 112.0
+margin_bottom = 142.0
+text = "1000"
+align = 1
+
+[node name="Manufacture" type="Button" parent="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot2/Panel/Container"]
+margin_left = 6.0
+margin_top = 146.0
+margin_right = 106.0
+margin_bottom = 168.0
+rect_min_size = Vector2( 100, 20 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 16 )
+text = "Manufacture"
+clip_text = true
+icon_align = 1
+
+[node name="GameStateMachine" type="Node" parent="."]
+script = ExtResource( 18 )
+
+[node name="PauseLayer" parent="." instance=ExtResource( 19 )]
+pause_mode = 2
+
+[connection signal="pressed" from="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot/Panel/Container/Manufacture" to="UI/Shop" method="_on_Manufacture_pressed" flags=3 binds= [ "MINER" ]]
+[connection signal="pressed" from="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot2/Panel/Container/Manufacture" to="UI/Shop" method="_on_Manufacture_pressed" flags=3 binds= [ "ATTACK" ]]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Game/Entities/Weapons/AutoGun/AutoGun.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Game/Entities/Projectiles/normal_bullet/normal_bullet.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="AutoGun" type="Area2D"]
+collision_layer = 64
+collision_mask = 137
+monitorable = false
+script = ExtResource( 1 )
+projectile = ExtResource( 2 )
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Gun_Range" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="." to="." method="_on_AutoGun_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_AutoGun_area_exited"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]

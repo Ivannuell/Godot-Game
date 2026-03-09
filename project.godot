@@ -12,40 +12,64 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Asteroid",
 "language": "GDScript",
-"path": "res://Entities/Asteriod/Asteriod.gd"
-}, {
-"base": "Node",
-"class": "CargoComponent",
-"language": "GDScript",
-"path": "res://Entities/Components/Cargo.gd"
-}, {
-"base": "Resource",
-"class": "DamageData",
-"language": "GDScript",
-"path": "res://Entities/Weapons/DamageData.gd"
+"path": "res://Scenes/Game/Entities/Asteriod/Asteriod.gd"
 }, {
 "base": "KinematicBody2D",
-"class": "Enemy",
+"class": "Attacker",
 "language": "GDScript",
-"path": "res://Entities/Enemies/Enemy/Enemy.gd"
+"path": "res://Scenes/Game/Entities/Spaceships/Attacker/Attacker.gd"
+}, {
+"base": "Node2D",
+"class": "CargoComponent",
+"language": "GDScript",
+"path": "res://Scenes/Game/Entities/Components/Cargo/Cargo.gd"
+}, {
+"base": "Reference",
+"class": "DamageData",
+"language": "GDScript",
+"path": "res://Scenes/Game/Entities/Weapons/DamageData.gd"
+}, {
+"base": "Node",
+"class": "Game_Stat",
+"language": "GDScript",
+"path": "res://Autoloads/GameData.gd"
+}, {
+"base": "Node2D",
+"class": "InfluenceManager",
+"language": "GDScript",
+"path": "res://Scenes/Game/Systems/influence/influence_manager.gd"
+}, {
+"base": "Node",
+"class": "InfluenceMap",
+"language": "GDScript",
+"path": "res://Scenes/Game/Systems/influence/influence_map.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Miner",
 "language": "GDScript",
-"path": "res://Entities/Enemies/Miner/Miner.gd"
+"path": "res://Scenes/Game/Entities/Spaceships/Miner/Miner.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Entities/Player/Player.gd"
+"path": "res://Scenes/Game/Entities/Player/Player.gd"
+}, {
+"base": "Node",
+"class": "SpaceShipFactory",
+"language": "GDScript",
+"path": "res://Autoloads/SpaceshipFactory.gd"
 } ]
 _global_script_class_icons={
 "Asteroid": "",
+"Attacker": "",
 "CargoComponent": "",
 "DamageData": "",
-"Enemy": "",
+"Game_Stat": "",
+"InfluenceManager": "",
+"InfluenceMap": "",
 "Miner": "",
-"Player": ""
+"Player": "",
+"SpaceShipFactory": ""
 }
 
 [application]
@@ -56,7 +80,12 @@ config/icon="res://icon.png"
 
 [autoload]
 
-SignalBus="*res://SignalBus.gd"
+SignalBus="*res://Autoloads/SignalBus.gd"
+SpaceshipFactory="*res://Autoloads/SpaceshipFactory.gd"
+GameData="*res://Autoloads/GameData.gd"
+PlayerStats="*res://Autoloads/PlayerStats.gd"
+SceneManager="*res://Autoloads/SceneManager.gd"
+AppStateMachine="*res://Autoloads/AppStateMachine.gd"
 
 [debug]
 
@@ -68,12 +97,38 @@ window/size/width=720
 window/size/height=480
 window/size/resizable=false
 window/size/always_on_top=true
+window/size/test_width=1280
+window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
 
 [input]
 
@@ -100,6 +155,26 @@ move={
 ui_debug_stop_enemies={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+spawn={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+boost={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+missile={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pause_game={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Game/Entities/Components/HurtBox/HurtBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Game/Entities/Components/Cargo/Cargo.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Game/Entities/Components/Health/Health.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Game/Entities/Weapons/MiningTool/MiningTool.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Game/Entities/Spaceships/Miner/CrabShip.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Game/Entities/Spaceships/Miner/Miner.gd" type="Script" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Miner" type="KinematicBody2D"]
+rotation = 6.28318
+scale = Vector2( 0.7, 0.7 )
+z_index = 51
+collision_layer = 9
+script = ExtResource( 6 )
+
+[node name="MiningTool" parent="." instance=ExtResource( 4 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 3.14159
+texture = ExtResource( 5 )
+
+[node name="Cargo" parent="." instance=ExtResource( 2 )]
+
+[node name="RayCenter" type="RayCast2D" parent="."]
+rotation = 3.14159
+enabled = true
+
+[node name="RayLeft" type="RayCast2D" parent="."]
+rotation = -1.57079
+enabled = true
+cast_to = Vector2( 4.12806e-05, 34.2857 )
+
+[node name="RayRight" type="RayCast2D" parent="."]
+rotation = 1.57079
+enabled = true
+cast_to = Vector2( -0.000388963, 34.2857 )
+collision_mask = 129
+
+[node name="Health" parent="." instance=ExtResource( 3 )]
+max_hp = 300
+
+[node name="HurtBox" parent="." instance=ExtResource( 1 )]

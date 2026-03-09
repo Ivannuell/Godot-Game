@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Game/Entities/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Game/Entities/Weapons/Launcher/MissileLauncher.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Game/Systems/DamageSystem.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Game/Systems/ShootingSystem.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Game/Entities/Spaceships/Attacker/Attacker.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Game/Systems/DeathSystem.tscn" type="PackedScene" id=6]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="DamageSystem" parent="." instance=ExtResource( 3 )]
+
+[node name="ShootingSystem" parent="." instance=ExtResource( 4 )]
+
+[node name="DeathSystem" parent="." instance=ExtResource( 6 )]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 184, 256 )
+
+[node name="MissileLauncher" parent="Player" instance=ExtResource( 2 )]
+
+[node name="Enemy" parent="." instance=ExtResource( 5 )]
+position = Vector2( 488, 272 )
+rotation = -1.55789
+moving = false
+
+[node name="Enemy2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 488, 224 )
+rotation = -1.58126
+moving = false
