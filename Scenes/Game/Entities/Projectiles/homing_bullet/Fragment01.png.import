@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Gun.png-cf216b96b6bf5ec2ddd5f209a2fded02.stex"
+path="res://.import/Fragment01.png-fd9fda981b9d263a3a478750e5ffd995.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpaceShooter/Enemies/Gun.png"
-dest_files=[ "res://.import/Gun.png-cf216b96b6bf5ec2ddd5f209a2fded02.stex" ]
+source_file="res://Scenes/Game/Entities/Projectiles/homing_bullet/Fragment01.png"
+dest_files=[ "res://.import/Fragment01.png-fd9fda981b9d263a3a478750e5ffd995.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

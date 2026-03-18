@@ -1,10 +1,10 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Scenes/Game/Entities/Weapons/MiningTool/MiningTool_Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Game/Entities/Weapons/Launcher/MissileLauncher.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Game/Entities/Base/Base.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Game/UI/PlayerHUD.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Game/Entities/Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Game/Entities/Player/Player.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Game/Systems/DamageSystem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Game/Systems/DeathSystem.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Game/Systems/ShootingSystem.tscn" type="PackedScene" id=8]
@@ -19,6 +19,81 @@
 [ext_resource path="res://Scenes/Game/Game.gd" type="Script" id=17]
 [ext_resource path="res://Scenes/Game/GameStateMachine.gd" type="Script" id=18]
 [ext_resource path="res://Scenes/Game/PauseLayer.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Game/Entities/Turrets/Basic/BasicTurret.tscn" type="PackedScene" id=20]
+[ext_resource path="res://SpaceShooter/Enemies/Gunship.png" type="Texture" id=21]
+[ext_resource path="res://Scenes/Game/Entities/Components/Cargo/Cargo.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Game/Entities/Components/HurtBox/HurtBox.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scenes/Game/Entities/Background/Starfield.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scenes/Game/Entities/Player/Player01-Sheet.png" type="Texture" id=25]
+[ext_resource path="res://Scenes/Game/Entities/Player/camera2D.gd" type="Script" id=26]
+[ext_resource path="res://Scenes/Game/Systems/EnemyStategy.gd" type="Script" id=27]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 20 )
+
+[sub_resource type="CanvasItemMaterial" id=20]
+blend_mode = 1
+
+[sub_resource type="Curve" id=21]
+max_value = 3.0
+_data = [ Vector2( 0, 3 ), 0.0, -3.0, 0, 1, Vector2( 1, 0 ), -3.0, 0.0, 1, 0 ]
+
+[sub_resource type="Gradient" id=19]
+offsets = PoolRealArray( 0.00925926, 1 )
+colors = PoolColorArray( 0.0574493, 0.46127, 0.980469, 1, 1, 1, 1, 1 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 13 ), SubResource( 12 ) ],
+"loop": false,
+"name": "move-left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": false,
+"name": "move-right",
+"speed": 5.0
+} ]
 
 [node name="Game" type="Node2D"]
 position = Vector2( 1712, 1960 )
@@ -27,12 +102,18 @@ __meta__ = {
 "_editor_description_": "This node has reference to the Projectiles parent class which connects all gun nodes to Projectiles class so they can spawn projectile"
 }
 
+[node name="Starfield" parent="." instance=ExtResource( 24 )]
+layer = -7
+camera_path = NodePath("../Entities/Player/Pivot/CameraOffset/Camera2D")
+
 [node name="Entities" type="Node" parent="."]
 
 [node name="Allies" type="Node" parent="Entities"]
 
 [node name="Base" parent="Entities/Allies" instance=ExtResource( 3 )]
 position = Vector2( 496, 1968 )
+scale = Vector2( 0.844869, 1.02143 )
+base = ExtResource( 21 )
 
 [node name="Enemies" type="Node" parent="Entities"]
 
@@ -60,10 +141,64 @@ team = 1
 position = Vector2( 3408, 1952 )
 team = 1
 
-[node name="Player" parent="Entities" groups=["allies"] instance=ExtResource( 5 )]
-position = Vector2( 512, 2072 )
+[node name="BasicTurret" parent="Entities/Enemies" instance=ExtResource( 20 )]
+position = Vector2( 3312, 1648 )
+team = 1
+
+[node name="BasicTurret2" parent="Entities/Enemies" instance=ExtResource( 20 )]
+position = Vector2( 3304, 2312 )
+team = 1
+
+[node name="Player" type="KinematicBody2D" parent="Entities" groups=["Allies", "allies"]]
+position = Vector2( 360, 312 )
 z_index = 51
 z_as_relative = false
+collision_mask = 4
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Entities/Player"]
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
+
+[node name="ThrusterParticles" type="CPUParticles2D" parent="Entities/Player"]
+material = SubResource( 20 )
+position = Vector2( 0, 22 )
+amount = 200
+speed_scale = 2.0
+fixed_fps = 60
+local_coords = false
+direction = Vector2( 0, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 10.0
+scale_amount = 2.0
+scale_amount_curve = SubResource( 21 )
+color = Color( 0.0509804, 0.14902, 0.933333, 1 )
+color_ramp = SubResource( 19 )
+hue_variation_random = 0.3
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Entities/Player"]
+frames = SubResource( 9 )
+animation = "idle"
+playing = true
+
+[node name="Pivot" type="Position2D" parent="Entities/Player"]
+rotation = -1.5708
+
+[node name="CameraOffset" type="Position2D" parent="Entities/Player/Pivot"]
+position = Vector2( 3, -0.999989 )
+
+[node name="Camera2D" type="Camera2D" parent="Entities/Player/Pivot/CameraOffset"]
+position = Vector2( 64, 0 )
+current = true
+limit_smoothed = true
+drag_margin_bottom = 0.4
+editor_draw_drag_margin = true
+script = ExtResource( 26 )
+
+[node name="Cargo" parent="Entities/Player" instance=ExtResource( 22 )]
+
+[node name="HurtBox" parent="Entities/Player" instance=ExtResource( 23 )]
 
 [node name="AutoGun" parent="Entities/Player" instance=ExtResource( 13 )]
 visible = false
@@ -81,11 +216,11 @@ position = Vector2( 1184, 1200 )
 scale = Vector2( 1.73749, 1.73749 )
 
 [node name="AsteriodArea2" parent="Entities/Asteriods" instance=ExtResource( 10 )]
-position = Vector2( 1184, 1200 )
+position = Vector2( 936, 792 )
 scale = Vector2( 5.04599, 5.04599 )
 
 [node name="AsteriodArea3" parent="Entities/Asteriods" instance=ExtResource( 10 )]
-position = Vector2( 1184, 1200 )
+position = Vector2( 2000, 968 )
 scale = Vector2( 7.78342, 7.78342 )
 
 [node name="AsteriodArea4" parent="Entities/Asteriods" instance=ExtResource( 10 )]
@@ -93,11 +228,11 @@ position = Vector2( 2296, 2616 )
 scale = Vector2( 1.73749, 1.73749 )
 
 [node name="AsteriodArea5" parent="Entities/Asteriods" instance=ExtResource( 10 )]
-position = Vector2( 2296, 2616 )
+position = Vector2( 2760, 2672 )
 scale = Vector2( 5.04599, 5.04599 )
 
 [node name="AsteriodArea6" parent="Entities/Asteriods" instance=ExtResource( 10 )]
-position = Vector2( 2296, 2616 )
+position = Vector2( 1464, 2568 )
 scale = Vector2( 7.78342, 7.78342 )
 
 [node name="Systems" type="Node" parent="."]
@@ -247,6 +382,9 @@ script = ExtResource( 18 )
 
 [node name="PauseLayer" parent="." instance=ExtResource( 19 )]
 pause_mode = 2
+
+[node name="EnemyAI" type="Node" parent="."]
+script = ExtResource( 27 )
 
 [connection signal="pressed" from="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot/Panel/Container/Manufacture" to="UI/Shop" method="_on_Manufacture_pressed" flags=3 binds= [ "MINER" ]]
 [connection signal="pressed" from="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot2/Panel/Container/Manufacture" to="UI/Shop" method="_on_Manufacture_pressed" flags=3 binds= [ "ATTACK" ]]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Missile.png-3189315dd341d7a9a634220986d2a36a.stex"
+path="res://.import/Projectile02.png-51129468d2a6fc10bf4ab41e1f2445bd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpaceShooter/Enemies/Missile.png"
-dest_files=[ "res://.import/Missile.png-3189315dd341d7a9a634220986d2a36a.stex" ]
+source_file="res://SpaceShooter/Projectiles And Explosions/Projectile02.png"
+dest_files=[ "res://.import/Projectile02.png-51129468d2a6fc10bf4ab41e1f2445bd.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -87,6 +87,8 @@ func apply_friction(delta):
 	if not Input.is_action_pressed("move"):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * speed_up_multi * delta)
 
+
+
 func receive_damage(damage_data):
 	var health = get_node_or_null("Health")
 	if health:

@@ -36,6 +36,11 @@ var state = State.SEARCHING
 
 func _ready():
 	add_to_group(str(team))
+	
+	if team == Team.ENEMY:
+		add_to_group("enemy_miners")
+	elif team == Team.PLAYER:
+		add_to_group("player_miners")
 
 func _physics_process(delta):
 	match state:

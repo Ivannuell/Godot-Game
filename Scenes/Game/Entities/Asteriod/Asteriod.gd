@@ -37,7 +37,7 @@ func mine(amount):
 
 	if resource_amount <= 0:
 		claimed_by = []
-		destroy()
+		die()
 
 	return extracted
 	
@@ -49,9 +49,11 @@ func claim(miner):
 	return true
 	
 
-func receive_damage(damage_data):
-	pass
 
-func destroy():
+func receive_damage(_damage_data):
+	die()
+
+
+func die():
 	emit_signal("destroyed")
 	queue_free()

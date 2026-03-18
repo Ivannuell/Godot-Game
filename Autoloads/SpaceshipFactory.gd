@@ -16,7 +16,7 @@ func spawn(base, type):
 			ent.add_child(AUTO_GUN.instance())
 		'MINER':
 			ent = MINER.instance()
-			
+	
 	if ent == null:
 		return
 	
@@ -24,6 +24,7 @@ func spawn(base, type):
 	
 	ent.team = team
 	ent.global_position = base.global_position
+	
 	
 	var parent = base.get_parent()
 	parent.add_child(ent)

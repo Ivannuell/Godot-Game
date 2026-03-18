@@ -8,21 +8,31 @@ enum Team {
 	NEUTRAL
 }
 
-var enemies_in_range = []
 onready var team = get_parent().team
+var enemies_in_range = []
+var d_time = 0.0
+var target = null
+
 
 func _ready():
 	add_to_group('guns')
 	$"%Gun_Range".shape = $"%Gun_Range".shape.duplicate()
 	set_detection_radius(detection_radius)
 	$CooldownTimer.start()
+	
+
+func _physics_process(delta):
+	d_time = delta
+
 
 func get_opposite_team() -> String:
 	return Team.PLAYER if team == Team.ENEMY else Team.ENEMY
 
+
 func set_detection_radius(value):
 	detection_radius = value
 	$"%Gun_Range".shape.radius = value
+
 
 # Enemy enters range
 func _on_AutoGun_area_entered(area):	
@@ -39,20 +49,22 @@ func _on_AutoGun_area_entered(area):
 		enemy.connect("tree_exited", self, "_on_enemy_exited", [enemy])
 
 
-
 # Enemy exits range or dies
 func _on_AutoGun_area_exited(area):
 	var enemy = area.get_parent()
 	_remove_enemy(enemy)
 	
 
+
 func _on_enemy_exited(enemy):
 	_remove_enemy(enemy)
+
 
 # Helper to remove enemy safely
 func _remove_enemy(enemy):
 	if enemy in enemies_in_range:
 		enemies_in_range.erase(enemy)
+
 
 # Pick closest enemy
 func _get_closest_enemy():
@@ -69,7 +81,7 @@ func _get_closest_enemy():
 
 
 func _on_CooldownTimer_timeout():
-	var target = _get_closest_enemy()
+	target = _get_closest_enemy()
 	
 	if get_parent() is Player:
 		target = _get_prioritized_enemy()
@@ -78,7 +90,20 @@ func _on_CooldownTimer_timeout():
 		return
 		
 		
-	rotation = global_position.angle_to_point(random_point_in_circle(target.global_position, 20))
+#	rotation = global_position.angle_to_point(random_point_in_circle(target.global_position, 20))
+
+	var to_target = target.global_position - global_position
+
+	# Desired direction
+	var desired = to_target.normalized()
+
+	# Blend
+	var steering = (desired).normalized()
+
+	# --- Smooth Rotation ---
+	var target_angle = steering.angle() - PI 
+	var angle_diff = wrapf(target_angle - rotation, -PI,  PI)
+	rotation += clamp(angle_diff, -100 * d_time, 100 * d_time)
 	SignalBus.emit_signal("gun_shoot", self)
 	$CooldownTimer.start()
 
@@ -110,10 +135,11 @@ func _get_prioritized_enemy():
 			best_score = score
 			best_enemy = enemy
 	return best_enemy
-	
+
+
 func random_point_in_circle(center: Vector2, radius: float) -> Vector2:
 	var u := randf()
 	var theta := randf() * TAU
 	var r := radius * sqrt(u)
-
+	
 	return center + Vector2(cos(theta), sin(theta)) * r

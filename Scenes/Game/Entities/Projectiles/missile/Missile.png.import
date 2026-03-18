@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Fragment01.png-07fe3cb96fe82d547fbc6cea1c20bb1c.stex"
+path="res://.import/Missile.png-17a3a9afa6f98457d7f7919ffb42617d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpaceShooter/Projectiles And Explosions/Fragment01.png"
-dest_files=[ "res://.import/Fragment01.png-07fe3cb96fe82d547fbc6cea1c20bb1c.stex" ]
+source_file="res://Scenes/Game/Entities/Projectiles/missile/Missile.png"
+dest_files=[ "res://.import/Missile.png-17a3a9afa6f98457d7f7919ffb42617d.stex" ]
 
 [params]
 

@@ -28,6 +28,11 @@ func _ready():
 	add_to_group("damageable")
 	find_target()
 	randomize()
+	
+	if team == Team.PLAYER:
+		add_to_group("player_attackers")
+	elif team == Team.ENEMY:
+		add_to_group("enemy_attackers")
 
 
 func _physics_process(delta):

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SpaceStation.png-dfa5ad37a6cc8139667de3ae26321551.stex"
+path="res://.import/SpaceStation.png-602392447747e8b94a44d8247d0d0749.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpaceShooter/Backgrounds/SpaceStation.png"
-dest_files=[ "res://.import/SpaceStation.png-dfa5ad37a6cc8139667de3ae26321551.stex" ]
+source_file="res://Scenes/Game/Entities/Base/SpaceStation.png"
+dest_files=[ "res://.import/SpaceStation.png-602392447747e8b94a44d8247d0d0749.stex" ]
 
 [params]
 

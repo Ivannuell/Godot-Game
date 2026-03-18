@@ -22,7 +22,7 @@ func spawn_one():
 
 	ast.connect("destroyed", self, "_on_asteroid_destroyed", [ast])
 
-	$Asteroids.add_child(ast)
+	$Asteroids.call_deferred("add_child", ast)
 
 
 func find_valid_position(area_radius):
