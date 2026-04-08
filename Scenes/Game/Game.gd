@@ -11,6 +11,13 @@ onready var enemyAI = $EnemyAI
 func _ready():
 	shop.connect("manufacture_requested", self, "on_manufacture_request")
 	enemyAI.connect("manufacture_requested", self, "on_enemy_manufacture_request")
+	SignalBus.connect("game_over", self, "_on_game_over")
+
+func _on_game_over(base):
+	stateMachine.change_state(
+		stateMachine.GAMEOVER_STATE.new()
+	)
+
 		
 func _unhandled_input(event):
 	if event.is_action_pressed("pause_game"):
@@ -34,11 +41,17 @@ var Spaceships = {
 
 
 func on_manufacture_request(type):
+	if not is_instance_valid(playerBase):
+		return
+		
 	if playerBase.minerals >= Spaceships[type]:
 		playerBase.minerals -= Spaceships[type]
 		SpaceshipFactory.spawn(playerBase, type)
 		
 func on_enemy_manufacture_request(type):
+	if not is_instance_valid(enemyBase):
+		return
+	
 	if enemyBase.minerals >= Spaceships[type]:
 		enemyBase.minerals -= Spaceships[type]
 		SpaceshipFactory.spawn(enemyBase, type)

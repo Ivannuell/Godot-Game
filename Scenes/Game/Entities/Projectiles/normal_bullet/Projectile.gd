@@ -5,7 +5,7 @@ var _owner
 var speed = 500
 var rot: float
 var direction: Vector2
-const MAX_TRAVEL_TIME = 1
+const MAX_TRAVEL_TIME = 2
 var elapsed = 0.0
 
 const DAMAGE = 10
@@ -18,9 +18,10 @@ func _setup(gun):
 	rotation = gun.rotation - PI/2
 	team = _owner.team
 	
-	damage_data.source = _owner
+	damage_data.source = self
 	damage_data.amount = DAMAGE
 	damage_data.source_team = team
+	damage_data.owner = _owner
 
 
 
@@ -38,6 +39,7 @@ func _on_Area2D_area_entered(area):
 		
 	if area.get_parent() == _owner:
 		return
+	
 	
 	SignalBus.emit_signal("hit", area, damage_data)
 	queue_free()

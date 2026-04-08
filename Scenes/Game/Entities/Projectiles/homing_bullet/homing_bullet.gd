@@ -20,7 +20,8 @@ func _setup(gun):
 	team = _owner.team
 	target = gun.target
 	
-	damage_data.source = _owner
+	damage_data.source = self
+	damage_data.owner = _owner
 	damage_data.amount = DAMAGE
 	damage_data.source_team = team
 
@@ -44,6 +45,9 @@ func _on_Area2D_area_entered(area):
 		return
 		
 	if area.get_parent() == _owner:
+		return
+		
+	if area.get_parent().team == team:
 		return
 	
 	SignalBus.emit_signal("hit", area, damage_data)

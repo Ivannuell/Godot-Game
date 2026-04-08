@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Scenes/Game/Entities/Weapons/MiningTool/MiningTool_Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Game/Entities/Weapons/Launcher/MissileLauncher.tscn" type="PackedScene" id=2]
@@ -27,6 +27,9 @@
 [ext_resource path="res://Scenes/Game/Entities/Player/Player01-Sheet.png" type="Texture" id=25]
 [ext_resource path="res://Scenes/Game/Entities/Player/camera2D.gd" type="Script" id=26]
 [ext_resource path="res://Scenes/Game/Systems/EnemyStategy.gd" type="Script" id=27]
+[ext_resource path="res://Scenes/Game/Entities/Spaceships/Attacker/Attacker.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Scenes/Game/Entities/Weapons/Player_Cannon/Cannon.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Scenes/Game/GameOverLayer.tscn" type="PackedScene" id=30]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 20 )
@@ -106,6 +109,9 @@ __meta__ = {
 layer = -7
 camera_path = NodePath("../Entities/Player/Pivot/CameraOffset/Camera2D")
 
+[node name="EnemyAI" type="Node" parent="."]
+script = ExtResource( 27 )
+
 [node name="Entities" type="Node" parent="."]
 
 [node name="Allies" type="Node" parent="Entities"]
@@ -115,25 +121,40 @@ position = Vector2( 496, 1968 )
 scale = Vector2( 0.844869, 1.02143 )
 base = ExtResource( 21 )
 
+[node name="Miner" parent="Entities/Allies" instance=ExtResource( 12 )]
+position = Vector2( 536, 1792 )
+
+[node name="Miner2" parent="Entities/Allies" instance=ExtResource( 12 )]
+position = Vector2( 544, 2128 )
+
+[node name="Enemy" parent="Entities/Allies" instance=ExtResource( 28 )]
+position = Vector2( 152, 1536 )
+
+[node name="AutoGun" parent="Entities/Allies/Enemy" instance=ExtResource( 13 )]
+
 [node name="Enemies" type="Node" parent="Entities"]
 
+[node name="Enemy2" parent="Entities/Enemies" instance=ExtResource( 28 )]
+position = Vector2( 384, 1528 )
+team = 1
+
 [node name="Miner" parent="Entities/Enemies" instance=ExtResource( 12 )]
-position = Vector2( 3488, 2096 )
+position = Vector2( 3096, 1952 )
 rotation = 6.28
 team = 1
 
 [node name="Miner2" parent="Entities/Enemies" instance=ExtResource( 12 )]
-position = Vector2( 3480, 1864 )
+position = Vector2( 3144, 1952 )
 rotation = 6.28
 team = 1
 
 [node name="Miner3" parent="Entities/Enemies" instance=ExtResource( 12 )]
-position = Vector2( 3408, 1792 )
+position = Vector2( 3192, 1952 )
 rotation = 6.28
 team = 1
 
 [node name="Miner4" parent="Entities/Enemies" instance=ExtResource( 12 )]
-position = Vector2( 3424, 2152 )
+position = Vector2( 3240, 1952 )
 rotation = 6.28
 team = 1
 
@@ -142,15 +163,31 @@ position = Vector2( 3408, 1952 )
 team = 1
 
 [node name="BasicTurret" parent="Entities/Enemies" instance=ExtResource( 20 )]
-position = Vector2( 3312, 1648 )
+position = Vector2( 3248, 1704 )
+team = 1
+
+[node name="BasicTurret3" parent="Entities/Enemies" instance=ExtResource( 20 )]
+position = Vector2( 3256, 2192 )
 team = 1
 
 [node name="BasicTurret2" parent="Entities/Enemies" instance=ExtResource( 20 )]
-position = Vector2( 3304, 2312 )
+position = Vector2( 3248, 2128 )
+team = 1
+
+[node name="BasicTurret4" parent="Entities/Enemies" instance=ExtResource( 20 )]
+position = Vector2( 3248, 1632 )
+team = 1
+
+[node name="BasicTurret5" parent="Entities/Enemies" instance=ExtResource( 20 )]
+position = Vector2( 3328, 1672 )
+team = 1
+
+[node name="BasicTurret6" parent="Entities/Enemies" instance=ExtResource( 20 )]
+position = Vector2( 3336, 2160 )
 team = 1
 
 [node name="Player" type="KinematicBody2D" parent="Entities" groups=["Allies", "allies"]]
-position = Vector2( 360, 312 )
+position = Vector2( 296, 1968 )
 z_index = 51
 z_as_relative = false
 collision_mask = 4
@@ -200,12 +237,10 @@ script = ExtResource( 26 )
 
 [node name="HurtBox" parent="Entities/Player" instance=ExtResource( 23 )]
 
-[node name="AutoGun" parent="Entities/Player" instance=ExtResource( 13 )]
-visible = false
-detection_radius = 200.0
-
 [node name="MiningTool_Player" parent="Entities/Player" instance=ExtResource( 1 )]
 scale = Vector2( 2.06292, 2.04793 )
+
+[node name="Cannon" parent="Entities/Player" instance=ExtResource( 29 )]
 
 [node name="MissileLauncher" parent="Entities/Player" instance=ExtResource( 2 )]
 
@@ -216,7 +251,7 @@ position = Vector2( 1184, 1200 )
 scale = Vector2( 1.73749, 1.73749 )
 
 [node name="AsteriodArea2" parent="Entities/Asteriods" instance=ExtResource( 10 )]
-position = Vector2( 936, 792 )
+position = Vector2( 896, 776 )
 scale = Vector2( 5.04599, 5.04599 )
 
 [node name="AsteriodArea3" parent="Entities/Asteriods" instance=ExtResource( 10 )]
@@ -228,7 +263,7 @@ position = Vector2( 2296, 2616 )
 scale = Vector2( 1.73749, 1.73749 )
 
 [node name="AsteriodArea5" parent="Entities/Asteriods" instance=ExtResource( 10 )]
-position = Vector2( 2760, 2672 )
+position = Vector2( 2752, 2688 )
 scale = Vector2( 5.04599, 5.04599 )
 
 [node name="AsteriodArea6" parent="Entities/Asteriods" instance=ExtResource( 10 )]
@@ -382,9 +417,10 @@ script = ExtResource( 18 )
 
 [node name="PauseLayer" parent="." instance=ExtResource( 19 )]
 pause_mode = 2
+visible = false
 
-[node name="EnemyAI" type="Node" parent="."]
-script = ExtResource( 27 )
+[node name="GameOverLayer" parent="." instance=ExtResource( 30 )]
+visible = false
 
 [connection signal="pressed" from="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot/Panel/Container/Manufacture" to="UI/Shop" method="_on_Manufacture_pressed" flags=3 binds= [ "MINER" ]]
 [connection signal="pressed" from="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot2/Panel/Container/Manufacture" to="UI/Shop" method="_on_Manufacture_pressed" flags=3 binds= [ "ATTACK" ]]

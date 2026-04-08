@@ -1,5 +1,8 @@
 extends Node
 
+signal game_over(base)
+
+
 signal gun_shoot(gun)
 signal missile_launch(launcher)
 
@@ -8,6 +11,7 @@ signal hit(hurtbox, damage_data)
 
 signal entity_damaged(entity, amount, source)
 signal entity_died(entity)
+
 
 
 

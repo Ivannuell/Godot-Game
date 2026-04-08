@@ -50,5 +50,6 @@ func receive_damage(damage_data):
 
 
 func die():
+	SignalBus.emit_signal('game_over', self)
 	queue_free()
 

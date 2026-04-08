@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Game/Entities/Weapons/AutoGun/AutoGun.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Game/Entities/Turrets/Basic/Gun.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Game/Entities/Turrets/Basic/BasicTurret.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Game/Entities/Projectiles/homing_bullet/homing_bullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Game/Entities/Components/Health/Health.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Game/Entities/Components/HurtBox/HurtBox.tscn" type="PackedScene" id=6]
 
@@ -12,7 +11,6 @@ script = ExtResource( 3 )
 
 [node name="AutoGun" parent="." instance=ExtResource( 1 )]
 detection_radius = 300.0
-projectile = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="AutoGun"]
 position = Vector2( -16, 1.77636e-15 )
