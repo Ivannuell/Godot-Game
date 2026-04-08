@@ -5,7 +5,7 @@ onready var playerBase = $Entities/Allies/Base
 onready var enemyBase = $Entities/Enemies/Base
 onready var stateMachine = $GameStateMachine
 
-onready var enemyAI = $EnemyAI
+onready var enemyAI = $Systems/EnemyAI
 
 
 func _ready():
