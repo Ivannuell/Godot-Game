@@ -14,34 +14,34 @@ export (Team) var team = Team.PLAYER
 export (Texture) var base 
 
 var minerals = 0 setget set_minerals, get_minerals
+var time = 0.0
 
 func _ready():
 	add_to_group(str(team))
-	$Sprite.texture = base
+	
+	if !base:
+		$Sprite.texture = load("res://Scenes/Game/Entities/Base/SpaceStation.png")
+	else:
+		$Sprite.texture = base
+		
+func _physics_process(delta):
+	time += delta
+	
+	if time >= 1:
+		self.minerals += GameEconomy.passiveIncome
+		time = 0.0
 
 
 func set_minerals(value):
 	minerals = value
 	SignalBus.emit_signal("minerals_changed", team, minerals)
-	
-
-func deduct_minerals(value):
-	self.minerals -= value
-	SignalBus.emit_signal("minerals_changed", team, minerals)
-
-
 func get_minerals():
 	return minerals
 
 
-func _on_Area2D_body_entered(body):
-	if not body.team == team:
-		return
-	
-	var cargo = body.get_node_or_null('Cargo')
-	
-	if cargo:
-		self.minerals += cargo.deposit_all()
+func deduct_minerals(value):
+	self.minerals -= value
+	SignalBus.emit_signal("minerals_changed", team, minerals)
 
 
 func receive_damage(damage_data):

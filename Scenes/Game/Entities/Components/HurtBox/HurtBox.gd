@@ -1,4 +1,5 @@
 extends Area2D
+class_name HurtBox
 
 onready var team = get_parent().team
 

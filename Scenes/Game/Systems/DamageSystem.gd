@@ -8,7 +8,6 @@ func _ready():
 	SignalBus.connect("entity_damaged", self, "_on_entity_damaged")
 	SignalBus.connect("explosion", self, "on_explosion")
 	SignalBus.connect("hit", self, "on_hit")
-#	SignalBus.connect("play_explosion", self, "_on_play_explosion")
 
 
 func _on_entity_damaged(entity, amount, source):

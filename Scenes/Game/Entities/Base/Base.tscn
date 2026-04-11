@@ -1,12 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Scenes/Game/Entities/Components/CollectionArea/CollectionArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Game/Entities/Base/Base.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Game/Entities/Components/Health/Health.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Game/Entities/Components/HurtBox/HurtBox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Game/Entities/Base/SpaceStation.png" type="Texture" id=5]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 138.101
 
 [node name="Base" type="Node2D"]
 script = ExtResource( 2 )
@@ -20,13 +18,8 @@ texture = ExtResource( 5 )
 wait_time = 2.0
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 9
-collision_mask = 9
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+[node name="Area2D" parent="." instance=ExtResource( 1 )]
+scale = Vector2( 0.277586, 0.276842 )
 
 [node name="Health" parent="." instance=ExtResource( 3 )]
 max_hp = 1000
@@ -34,4 +27,4 @@ max_hp = 1000
 [node name="HurtBox" parent="." instance=ExtResource( 4 )]
 scale = Vector2( 10.0846, 9.60058 )
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]

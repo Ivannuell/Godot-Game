@@ -37,13 +37,13 @@ func _unhandled_input(event):
 func on_manufacture_request(type):
 	if not is_instance_valid(playerBase):
 		return
-		
+	
 	var price = SpaceshipFactory.Spaceships[type]
-		
+	
 	if playerBase.minerals >= price:
 		playerBase.minerals -= price
 		SpaceshipFactory.spawn(playerBase, type)
-		
+	
 func on_enemy_manufacture_request(type):
 	if not is_instance_valid(enemyBase):
 		return

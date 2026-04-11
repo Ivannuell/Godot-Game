@@ -91,8 +91,9 @@ func apply_friction(delta):
 
 func receive_damage(damage_data):
 	var health = get_node_or_null("Health")
+	print(health)
 	if health:
 		health.apply_damage(damage_data)
 
 func die():
-	queue_free()
+	SignalBus.emit_signal("game_over", self)

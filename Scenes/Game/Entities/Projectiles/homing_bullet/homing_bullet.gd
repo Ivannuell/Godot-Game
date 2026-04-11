@@ -9,7 +9,7 @@ const MAX_TRAVEL_TIME = 1
 var elapsed = 0.0
 var target = null
 
-const DAMAGE = 10
+const DAMAGE = 20
 var damage_data = DamageData.new()
 
 func _setup(gun):

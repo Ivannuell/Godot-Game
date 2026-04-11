@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Game/Entities/Components/Cargo/Cargo.gd"
 }, {
+"base": "Area2D",
+"class": "CollectionArea",
+"language": "GDScript",
+"path": "res://Scenes/Game/Entities/Components/CollectionArea/CollectionArea.gd"
+}, {
 "base": "Reference",
 "class": "DamageData",
 "language": "GDScript",
@@ -43,6 +48,16 @@ _global_script_classes=[ {
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Node2D",
+"class": "Health",
+"language": "GDScript",
+"path": "res://Scenes/Game/Entities/Components/Health/Health.gd"
+}, {
+"base": "Area2D",
+"class": "HurtBox",
+"language": "GDScript",
+"path": "res://Scenes/Game/Entities/Components/HurtBox/HurtBox.gd"
 }, {
 "base": "Node2D",
 "class": "InfluenceManager",
@@ -74,9 +89,12 @@ _global_script_class_icons={
 "Attacker": "",
 "Base": "",
 "CargoComponent": "",
+"CollectionArea": "",
 "DamageData": "",
 "Game_Stat": "",
 "GitAPI": "",
+"Health": "",
+"HurtBox": "",
 "InfluenceManager": "",
 "InfluenceMap": "",
 "Miner": "",
@@ -98,6 +116,7 @@ GameData="*res://Autoloads/GameData.gd"
 PlayerStats="*res://Autoloads/PlayerStats.gd"
 SceneManager="*res://Autoloads/SceneManager.gd"
 AppStateMachine="*res://Autoloads/AppStateMachine.gd"
+GameEconomy="*res://Autoloads/GameEconomy.gd"
 
 [debug]
 
