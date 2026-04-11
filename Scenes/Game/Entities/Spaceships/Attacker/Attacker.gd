@@ -126,9 +126,7 @@ func get_avoidance_vector():
 
 	# Center detection - decide dodge direction
 	if $RayCenter.is_colliding():
-		# If not already dodging, randomly choose left or right
 		if dodge_direction == 0:
-#			dodge_direction = 1 if randf() > 0.5 else -1
 			dodge_direction = 1
 			dodge_timer = dodge_duration
 		
@@ -141,20 +139,16 @@ func get_avoidance_vector():
 		avoid -= transform.y * 2.0  # Also push away from obstacle
 	else:
 		# Left side collision - steer right
-		if $RayLeft.is_colliding():
-			avoid -= transform.x
-		if $RayLeft2.is_colliding():
-			avoid -= transform.x
-		if $RayLeft3.is_colliding():
+		if $RayLeft.is_colliding() or\
+			$RayLeft2.is_colliding() or\
+			$RayLeft3.is_colliding():
 			avoid -= transform.x
 		
 		
 		# Right side collision - steer left
-		if $RayRight.is_colliding():
-			avoid += transform.x
-		if $RayRight2.is_colliding():
-			avoid += transform.x
-		if $RayRight3.is_colliding():
+		if $RayRight.is_colliding() or\
+			$RayRight2.is_colliding() or\
+			$RayRight3.is_colliding():
 			avoid += transform.x
 			
 		dodge_timer = dodge_duration

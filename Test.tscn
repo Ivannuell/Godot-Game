@@ -16,7 +16,7 @@
 [node name="DeathSystem" parent="." instance=ExtResource( 6 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 184, 256 )
+position = Vector2( 16, 240 )
 
 [node name="MissileLauncher" parent="Player" instance=ExtResource( 2 )]
 

@@ -128,7 +128,7 @@ position = Vector2( 544, 2128 )
 
 [node name="Enemy" parent="Entities/Allies" instance=ExtResource( 28 )]
 self_modulate = Color( 0.615686, 0.105882, 0.105882, 1 )
-position = Vector2( 152, 1536 )
+position = Vector2( 432, 1600 )
 
 [node name="AutoGun" parent="Entities/Allies/Enemy" instance=ExtResource( 13 )]
 
