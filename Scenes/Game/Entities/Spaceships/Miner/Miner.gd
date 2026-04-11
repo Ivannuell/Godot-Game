@@ -38,6 +38,7 @@ func _ready():
 	add_to_group(str(team))
 	
 	if team == Team.ENEMY:
+		set_modulate(Color(0.95, 0.55, 0.55))
 		add_to_group("enemy_miners")
 	elif team == Team.PLAYER:
 		add_to_group("player_miners")

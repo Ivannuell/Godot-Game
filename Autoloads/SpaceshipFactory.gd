@@ -6,6 +6,10 @@ const MINER = preload("res://Scenes/Game/Entities/Spaceships/Miner/Miner.tscn")
 
 const AUTO_GUN = preload("res://Scenes/Game/Entities/Weapons/AutoGun/AutoGun.tscn")
 
+var Spaceships = {
+	'ATTACK': 1000,
+	'MINER': 1500
+}
 
 func spawn(base, type):
 	var ent = null

@@ -125,17 +125,15 @@ position = Vector2( 536, 1792 )
 position = Vector2( 544, 2128 )
 
 [node name="Enemy" parent="Entities/Allies" instance=ExtResource( 28 )]
+self_modulate = Color( 0.615686, 0.105882, 0.105882, 1 )
 position = Vector2( 152, 1536 )
 
 [node name="AutoGun" parent="Entities/Allies/Enemy" instance=ExtResource( 13 )]
 
 [node name="Enemies" type="Node" parent="Entities"]
 
-[node name="Enemy2" parent="Entities/Enemies" instance=ExtResource( 28 )]
-position = Vector2( 384, 1528 )
-team = 1
-
 [node name="Miner" parent="Entities/Enemies" instance=ExtResource( 12 )]
+modulate = Color( 0.952941, 0.54902, 0.54902, 1 )
 position = Vector2( 3096, 1952 )
 rotation = 6.28
 team = 1

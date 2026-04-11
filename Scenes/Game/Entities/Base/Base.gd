@@ -1,4 +1,5 @@
 extends Node2D
+class_name Base
 
 const GUN_SCENE = preload("res://Scenes/Game/Entities/Weapons/AutoGun/AutoGun.tscn")
 const HEALTH_SCENE = preload("res://Scenes/Game/Entities/Components/Health/Health.tscn")

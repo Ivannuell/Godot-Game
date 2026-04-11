@@ -34,25 +34,23 @@ func _unhandled_input(event):
 		shop.visible = !shop.visible
 
 
-var Spaceships = {
-	'ATTACK': 1000,
-	'MINER': 1500
-}
-
-
 func on_manufacture_request(type):
 	if not is_instance_valid(playerBase):
 		return
 		
-	if playerBase.minerals >= Spaceships[type]:
-		playerBase.minerals -= Spaceships[type]
+	var price = SpaceshipFactory.Spaceships[type]
+		
+	if playerBase.minerals >= price:
+		playerBase.minerals -= price
 		SpaceshipFactory.spawn(playerBase, type)
 		
 func on_enemy_manufacture_request(type):
 	if not is_instance_valid(enemyBase):
 		return
 	
-	if enemyBase.minerals >= Spaceships[type]:
-		enemyBase.minerals -= Spaceships[type]
+	var price = SpaceshipFactory.Spaceships[type]
+	
+	if enemyBase.minerals >= price:
+		enemyBase.minerals -= price
 		SpaceshipFactory.spawn(enemyBase, type)
 

@@ -32,6 +32,7 @@ func _ready():
 	if team == Team.PLAYER:
 		add_to_group("player_attackers")
 	elif team == Team.ENEMY:
+		set_modulate(Color(0.95, 0.55, 0.55))
 		add_to_group("enemy_attackers")
 
 
