@@ -30,16 +30,39 @@ texture = ExtResource( 5 )
 [node name="RayCenter" type="RayCast2D" parent="."]
 rotation = 3.14159
 enabled = true
+cast_to = Vector2( -0.000434603, 57.1429 )
 
 [node name="RayLeft" type="RayCast2D" parent="."]
 rotation = -1.57079
 enabled = true
-cast_to = Vector2( 4.12806e-05, 34.2857 )
+cast_to = Vector2( -6.8801e-05, -57.1429 )
+
+[node name="RayLeft2" type="RayCast2D" parent="."]
+rotation = -1.57079
+enabled = true
+cast_to = Vector2( 22.8571, -45.7143 )
+
+[node name="RayLeft3" type="RayCast2D" parent="."]
+rotation = -1.57079
+enabled = true
+cast_to = Vector2( 45.7143, -22.8572 )
 
 [node name="RayRight" type="RayCast2D" parent="."]
 rotation = 1.57079
 enabled = true
-cast_to = Vector2( -0.000388963, 34.2857 )
+cast_to = Vector2( 0.000648271, -57.1429 )
+collision_mask = 129
+
+[node name="RayRight2" type="RayCast2D" parent="."]
+rotation = 1.57079
+enabled = true
+cast_to = Vector2( -22.8566, -45.7145 )
+collision_mask = 129
+
+[node name="RayRight3" type="RayCast2D" parent="."]
+rotation = 1.57079
+enabled = true
+cast_to = Vector2( -45.714, -22.8577 )
 collision_mask = 129
 
 [node name="Health" parent="." instance=ExtResource( 3 )]

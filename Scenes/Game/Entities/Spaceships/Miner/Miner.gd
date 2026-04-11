@@ -1,27 +1,9 @@
-extends KinematicBody2D
+extends Spaceship
 class_name Miner
-
-enum Team {
-	PLAYER,
-	ENEMY,
-	NEUTRAL
-}
-
-export (Team) var team = Team.PLAYER
 
 var target = null
 onready var Cargo = $Cargo
 onready var Base = $"../Base"
-
-const SPEED = 100
-export var turn_speed := 3.0
-export var avoidance_strength := 2.5
-
-
-var dodge_direction := 0  # -1 = left, 0 = none, 1 = right
-var dodge_timer := 0.0
-var dodge_duration := 1  # How long to commit to a dodge direction
-
 
 onready var mining_tool = get_node_or_null("MiningTool")
 
@@ -35,6 +17,14 @@ enum State {
 var state = State.SEARCHING
 
 func _ready():
+	SPEED = 100
+	turn_speed = 3.0
+	avoidance_strength = 2.5
+	
+	dodge_direction = 0
+	dodge_timer = 0.0
+	dodge_duration = 1
+	
 	add_to_group(str(team))
 	
 	if team == Team.ENEMY:
@@ -107,9 +97,8 @@ func get_avoidance_vector():
 
 	# Center detection - decide dodge direction
 	if $RayCenter.is_colliding():
-		# If not already dodging, randomly choose left or right
 		if dodge_direction == 0:
-			dodge_direction = 1 if randf() > 0.5 else -1
+			dodge_direction = 1
 			dodge_timer = dodge_duration
 		
 		# Apply the chosen dodge direction
@@ -122,12 +111,23 @@ func get_avoidance_vector():
 	else:
 		# Left side collision - steer right
 		if $RayLeft.is_colliding():
-			avoid -= transform.x
+			avoid += transform.x
+		if $RayLeft2.is_colliding():
+			avoid += transform.x
+		if $RayLeft3.is_colliding():
+			avoid += transform.x
+		
 		
 		# Right side collision - steer left
 		if $RayRight.is_colliding():
-			avoid += transform.x
-
+			avoid -= transform.x
+		if $RayRight2.is_colliding():
+			avoid -= transform.x
+		if $RayRight3.is_colliding():
+			avoid -= transform.x
+		
+		dodge_timer = dodge_duration
+			
 	return avoid
 
 
@@ -139,11 +139,13 @@ func change_state(new_state):
 	if state == new_state:
 		return
 
+	# Do something before switching from a state
 	if state == State.MINING and mining_tool:
 		mining_tool.stop_beam()
 
 	state = new_state
-
+	
+	# Do something after switching to a new state
 	if state == State.MINING and mining_tool:
 		mining_tool.start_beam(target)
 
