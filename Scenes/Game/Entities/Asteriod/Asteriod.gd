@@ -26,8 +26,12 @@ func _ready():
 	add_to_group('asteroids')
 	randomize()
 	
+	multiplier = rand_range(0.5, 3)
 	
-	
+	resource_amount *= multiplier
+	$Sprite.set_scale(Vector2(multiplier, multiplier))
+	$CollisionShape2D.set_scale(Vector2(multiplier, multiplier))
+	max_miners = max(1, int(multiplier))
 	
 	$Sprite.frame = rand_range(0, $Sprite.hframes)
 
