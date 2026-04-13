@@ -13,6 +13,7 @@ export var resource_type := "minerals"
 export var resource_amount := 500
 export var max_miners := 1
 
+var multiplier = 1
 
 signal destroyed
 
@@ -24,7 +25,11 @@ var rot_speed = rand_range(0.001, 0.05)
 func _ready():
 	add_to_group('asteroids')
 	randomize()
-	$Sprite.frame = rand_range(1, $Sprite.hframes)
+	
+	
+	
+	
+	$Sprite.frame = rand_range(0, $Sprite.hframes)
 
 
 func _process(delta):
