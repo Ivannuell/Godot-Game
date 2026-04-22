@@ -5,36 +5,36 @@ const AREA_EXPLOSION_FX = preload("res://Scenes/Game/Entities/Components/FX/Area
 const PROJECTILE_EXPLOSTION_FX = preload("res://Scenes/Game/Entities/Components/FX/Projectile_Explosion/Projectile_Explosion.tscn")
 
 func _ready():
-	SignalBus.connect("entity_damaged", self, "_on_entity_damaged")
-	SignalBus.connect("explosion", self, "on_explosion")
-	SignalBus.connect("hit", self, "on_hit")
+	SignalBus.connect("entity_damaged", Callable(self, "_on_entity_damaged"))
+	SignalBus.connect("explosion", Callable(self, "on_explosion"))
+	SignalBus.connect("hit", Callable(self, "on_hit"))
 
 
-func _on_entity_damaged(entity, amount, source):
-	var fx = PROJECTILE_EXPLOSTION_FX.instance()
-	fx.global_position = source.global_position
-	add_child(fx)
-
+func _on_entity_damaged(hurtbox, damage_data):
+	hurtbox.receive_damage(damage_data)
+	
 
 
 func on_explosion(pos, radius, damage_data):
-	var explosion = DAMAGE_AREA.instance()
-	var explosionFX = AREA_EXPLOSION_FX.instance()
+	var explosion = DAMAGE_AREA.instantiate()
+	var explosionFX = AREA_EXPLOSION_FX.instantiate()
 	
 	explosion.global_position = pos
 	explosionFX.global_position = pos
-	explosion.get_node("Shape").shape.radius = radius
+	explosion.get_node("Shape3D").shape.radius = radius
 	explosion.damage_data = damage_data
 	
-	yield(get_tree(), "physics_frame")
+	await get_tree().physics_frame
 	add_child(explosion)
 	add_child(explosionFX)
 
 
-func on_hit(hurtbox, damage_data):
-	hurtbox.receive_damage(damage_data)
-	
-	
+func on_hit(source):
+	#Spawns a hit animation
+	var fx = PROJECTILE_EXPLOSTION_FX.instantiate()
+	fx.global_position = source.global_position
+	add_child(fx)
+
 func random_point_in_circle(center: Vector2, radius: float) -> Vector2:
 	var u := randf()
 	var theta := randf() * TAU

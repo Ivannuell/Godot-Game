@@ -2,7 +2,7 @@ extends Node
 
 signal booster_fuel_changed(value)
 
-var booster_fuel := 10.0 setget set_booster_fuel, get_booster_fuel
+var booster_fuel := 10.0: get = get_booster_fuel, set = set_booster_fuel
 var max_boost_fuel = 10.0
 
 var boost_fuel_persec = 2

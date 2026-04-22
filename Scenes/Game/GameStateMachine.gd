@@ -5,7 +5,7 @@ const RUNNING_STATE = preload("res://Scenes/Game/states/runningState.gd")
 const PAUSE_STATE = preload("res://Scenes/Game/states/pauseState.gd")
 const GAMEOVER_STATE = preload("res://Scenes/Game/states/gameOverState.gd")
 
-onready var game = get_parent()
+@onready var game = get_parent()
 
 var current_state = null
 

@@ -13,8 +13,8 @@ signal enemy_mineral_changed
 var game_time = 0.0
 var update_time = 0.0
 
-var player_minerals := 0 setget set_player_minerals
-var enemy_minerals := 0 setget set_enemy_minerals
+var player_minerals := 0: set = set_player_minerals
+var enemy_minerals := 0: set = set_enemy_minerals
 
 var enemy_miners := 0
 var enemy_attackers := 0
@@ -30,7 +30,7 @@ func set_enemy_minerals(value):
 
 func _ready():
 	reset()
-	SignalBus.connect("minerals_changed", self, "on_minerals_changed")
+	SignalBus.connect("minerals_changed", Callable(self, "on_minerals_changed"))
 
 
 func on_minerals_changed(team, amount):
@@ -62,4 +62,3 @@ func count_enemy_miners():
 	
 func count_enemy_attackers():
 	enemy_attackers = get_tree().get_nodes_in_group("enemy_attackers").size()
-

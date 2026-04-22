@@ -16,10 +16,10 @@ func spawn(base, type):
 	
 	match type:
 		'ATTACK':
-			ent = ATTACK.instance()
-			ent.add_child(AUTO_GUN.instance())
+			ent = ATTACK.instantiate()
+			ent.add_child(AUTO_GUN.instantiate())
 		'MINER':
-			ent = MINER.instance()
+			ent = MINER.instantiate()
 	
 	if ent == null:
 		return

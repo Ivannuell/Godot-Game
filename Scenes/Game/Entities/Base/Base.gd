@@ -10,19 +10,19 @@ enum Team {
 	NEUTRAL
 }
 
-export (Team) var team = Team.PLAYER
-export (Texture) var base 
+@export var team: Team = Team.PLAYER
+@export var base: Texture2D 
 
-var minerals = 0 setget set_minerals, get_minerals
+var minerals = 0: get = get_minerals, set = set_minerals
 var time = 0.0
 
 func _ready():
 	add_to_group(str(team))
 	
 	if !base:
-		$Sprite.texture = load("res://Scenes/Game/Entities/Base/SpaceStation.png")
+		$Sprite2D.texture = load("res://Scenes/Game/Entities/Base/SpaceStation.png")
 	else:
-		$Sprite.texture = base
+		$Sprite2D.texture = base
 		
 func _physics_process(delta):
 	time += delta
@@ -30,7 +30,6 @@ func _physics_process(delta):
 	if time >= 1:
 		self.minerals += GameEconomy.passiveIncome
 		time = 0.0
-
 
 func set_minerals(value):
 	minerals = value
@@ -53,4 +52,3 @@ func receive_damage(damage_data):
 func die():
 	SignalBus.emit_signal('game_over', self)
 	queue_free()
-

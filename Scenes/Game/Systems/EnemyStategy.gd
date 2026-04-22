@@ -2,7 +2,7 @@ extends Node
 
 var decision_time = 0.0
 
-onready var enemy_base = $"../../Entities/Enemies/Base"
+@onready var enemy_base = $"../../Entities/Enemies/Base"
 
 signal manufacture_requested(type)
 

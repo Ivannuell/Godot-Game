@@ -1,7 +1,7 @@
 extends Spaceship
 class_name Attacker
 
-export var moving := true
+@export var moving := true
 
 var target: Node = null
 var to_target := Vector2.ZERO
@@ -57,7 +57,8 @@ func _physics_process(delta):
 	# --- Move Forward Based on Current Rotation ---
 	if moving:
 		var forward = Vector2.UP.rotated(rotation)
-		move_and_slide(forward * SPEED)
+		set_velocity(forward * SPEED)
+		move_and_slide()
 		if to_target.length() <= 100:
 			change_state(State.TARGETING)
 		else:

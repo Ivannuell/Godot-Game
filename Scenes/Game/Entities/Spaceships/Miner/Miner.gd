@@ -2,10 +2,10 @@ extends Spaceship
 class_name Miner
 
 var target = null
-onready var Cargo = $Cargo
-onready var Base = $"../Base"
+@onready var Cargo = $Cargo
+@onready var Base = $"../Base"
 
-onready var mining_tool = get_node_or_null("MiningTool")
+@onready var mining_tool = get_node_or_null("MiningTool")
 
 enum State {
 	SEARCHING,
@@ -85,7 +85,8 @@ func update_movement(delta, move_target):
 
 	# --- Move Forward Based on Current Rotation ---
 	var forward = Vector2.UP.rotated(rotation)
-	move_and_slide(forward * SPEED)
+	set_velocity(forward * SPEED)
+	move_and_slide()
 
 
 # =========================

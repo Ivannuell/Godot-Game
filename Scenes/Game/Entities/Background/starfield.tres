@@ -1,4 +1,4 @@
-[gd_resource type="Shader" format=2]
+[gd_resource type="Shader" format=3 uid="uid://c4hw8chj3xqoy"]
 
 [resource]
 code = "shader_type canvas_item;
@@ -55,7 +55,7 @@ vec4 star_layer(vec2 uv, float scale, float density, float depth_dim){
 
 void fragment(){
 
-    vec2 uv = UV * (120.0 * (zoom * 0.5));
+    vec2 uv = UV * (50.0 / (zoom * 0.5));
 
     vec4 stars = vec4(0.1);
 

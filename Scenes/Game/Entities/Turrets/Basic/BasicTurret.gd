@@ -6,7 +6,7 @@ enum Team {
 	NEUTRAL
 }
 
-export (Team) var team = Team.PLAYER
+@export var team: Team = Team.PLAYER
 
 func _ready():
 	add_to_group(str(team))

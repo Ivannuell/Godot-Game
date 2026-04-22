@@ -1,7 +1,7 @@
 extends Area2D
 class_name HurtBox
 
-onready var team = get_parent().team
+@onready var team = get_parent().team
 
 func _ready():
 	add_to_group('hurtbox')

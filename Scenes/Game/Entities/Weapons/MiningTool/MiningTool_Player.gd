@@ -4,7 +4,7 @@ var target = null
 var asteroids_in_range = [] 
 var resource_persec = 200 
 
-onready var Cargo = get_parent().get_node('Cargo')
+@onready var Cargo = get_parent().get_node('Cargo')
 
 var beam_time := 0.0
 var wobble_amplitude := 10.0

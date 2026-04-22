@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 class_name Player
 
 enum Team {
@@ -7,7 +7,7 @@ enum Team {
 	NEUTRAL
 }
 
-export (Team) var team = Team.PLAYER
+@export var team: Team = Team.PLAYER
 
 const MAX_SPEED := 200.0
 const ACCELERATION := 400.0
@@ -19,9 +19,10 @@ var speed_up_multi = 1.0
 var rotation_multi = 1.0
 
 var boost_available := true
-onready var engine_particles = $ThrusterParticles
+@onready var engine_particles = $ThrusterParticles
 
-var velocity = Vector2.ZERO
+var curr_anim = 'idle'
+var anim = ''
 
 func _ready():
 	add_to_group(str(team))
@@ -32,9 +33,17 @@ func _physics_process(delta):
 	apply_friction(delta)
 
 	velocity = velocity.limit_length(MAX_SPEED * speed_up_multi)
-	move_and_slide(velocity)
-	$ThrusterParticles.initial_velocity = clamp(velocity.length(), 10, 50)
-
+	set_velocity(velocity)
+	move_and_slide()
+	$ThrusterParticles.initial_velocity_max = 50
+	$ThrusterParticles.initial_velocity_min = 20
+	
+	if curr_anim == anim:
+		return
+		
+	$AnimatedSprite2D.play(curr_anim)
+	anim = curr_anim
+	
 	
 func handle_rotation(delta):
 	var rotate_dir := 0
@@ -48,13 +57,14 @@ func handle_rotation(delta):
 	rotation += rotate_dir * ROTATION_SPEED * rotation_multi * delta
 
 	if rotate_dir < 0:
-		$AnimatedSprite.play("move-left")
+		curr_anim = "move-left"
 	elif rotate_dir > 0:
-		$AnimatedSprite.play("move-right")
+		curr_anim = "move-right"
 	else:
-		$AnimatedSprite.play("idle")
+		curr_anim = "idle"
 
-	
+
+
 func handle_thrust(delta):
 	if Input.is_action_pressed("boost") and boost_available:
 		PlayerStats.booster_fuel -= PlayerStats.boost_fuel_persec * delta

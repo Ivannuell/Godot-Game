@@ -1,0 +1,38 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cqqsanvqc3tj0"]
+
+[sub_resource type="Shader" id="1"]
+code = "shader_type canvas_item;
+
+uniform vec4 shield_color : source_color = vec4(0.2, 0.7, 1.0, 0.25);
+uniform float radius = 0.45;
+uniform float edge_width = 0.08;
+uniform float edge_strength = 2.0;
+uniform float time = 0.0;
+
+void fragment() {
+    vec2 center = vec2(0.5);
+    float dist = distance(UV, center);
+
+    // 🔑 Anti-aliased edge using smoothstep
+    float edge = smoothstep(radius - edge_width, radius, dist);
+
+    // Invert so edge is bright, center is transparent
+    edge = 1.0 - edge;
+
+    // 🔄 Subtle pulse animation
+    float pulse = sin(time * 2.0) * 0.03;
+    edge *= (1.0 + pulse);
+
+    vec3 color = shield_color.rgb * edge * edge_strength;
+    float alpha = shield_color.a * edge;
+
+    COLOR = vec4(color, alpha);
+}"
+
+[resource]
+shader = SubResource("1")
+shader_parameter/shield_color = Color(0.61960787, 0.8352941, 0.8862745, 0.5019608)
+shader_parameter/radius = 0.45
+shader_parameter/edge_width = 0.06
+shader_parameter/edge_strength = 0.099
+shader_parameter/time = 2.0

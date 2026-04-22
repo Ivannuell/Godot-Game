@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 var machine
 var game   # reference to Game node
