@@ -1,35 +1,33 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene format=3 uid="uid://ys0o64ogpmfv"]
 
-[ext_resource path="res://Scenes/Game/Entities/Asteriod/Asteroids-Sheet.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Game/Entities/Asteriod/Asteriod.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Game/Entities/Components/loot/Loot.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Game/Entities/Components/HurtBox/HurtBox.tscn" type="PackedScene" id=4]
+[ext_resource type="Texture2D" uid="uid://c8gs534adynow" path="res://Scenes/Game/Entities/Asteriod/Asteroids-Sheet.png" id="1"]
+[ext_resource type="Script" uid="uid://df7qsjpvvfvqm" path="res://Scenes/Game/Entities/Asteriod/Asteriod.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Components/loot/Loot.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Components/HurtBox/HurtBox.tscn" id="4"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 radius = 16.0
 
-[node name="Asteriod" type="RigidBody2D" groups=["asteriods"]]
-collision_layer = 137
+[node name="Asteriod" type="StaticBody2D" unique_id=1647916845 groups=["asteriods"]]
+collision_layer = 128
 collision_mask = 137
-mode = 1
-gravity_scale = 0.0
-script = ExtResource( 2 )
+script = ExtResource("2")
 team = 2
 
-[node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1, 1.00467 )
-texture = ExtResource( 1 )
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1018444608]
+scale = Vector2(1, 1.00467)
+texture = ExtResource("1")
 hframes = 12
 frame = 1
 
-[node name="Loot" parent="." instance=ExtResource( 3 )]
+[node name="Loot" parent="." unique_id=1523553459 instance=ExtResource("3")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2( 2.2507, 2.2507 )
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=181623932]
+scale = Vector2(2.2507, 2.2507)
+shape = SubResource("1")
 
-[node name="HurtBox" parent="." instance=ExtResource( 4 )]
+[node name="HurtBox" parent="." unique_id=1347848300 instance=ExtResource("4")]
 rotation = -3.14159
-scale = Vector2( 3.63208, 3.63208 )
+scale = Vector2(3.63208, 3.63208)
 collision_layer = 137
 collision_mask = 137

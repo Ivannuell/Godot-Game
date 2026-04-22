@@ -1,14 +1,15 @@
 extends Area2D
 
-export var detection_radius := 150.0 setget set_detection_radius
-export (PackedScene) var projectile
+@export var detection_radius := 150.0: set = set_detection_radius
+@export var projectile: PackedScene
+
 enum Team {
 	PLAYER,
 	ENEMY,
 	NEUTRAL
 }
 
-onready var team = get_parent().team
+@onready var team = get_parent().team
 var enemies_in_range = []
 var d_time = 0.0
 var target = null
@@ -25,7 +26,7 @@ func _physics_process(delta):
 	d_time = delta
 
 
-func get_opposite_team() -> String:
+func get_opposite_team() -> Team:
 	return Team.PLAYER if team == Team.ENEMY else Team.ENEMY
 
 
@@ -44,9 +45,9 @@ func _on_AutoGun_area_entered(area):
 	if enemy.team == get_opposite_team() and !(enemy in enemies_in_range):
 		enemies_in_range.append(enemy)
 		
-		if enemy.is_connected("tree_exited", self, "_on_enemy_exited"):
+		if enemy.is_connected("tree_exited", Callable(self, "_on_enemy_exited")):
 			return
-		enemy.connect("tree_exited", self, "_on_enemy_exited", [enemy])
+		enemy.connect("tree_exited", Callable(self, "_on_enemy_exited").bind(enemy))
 
 
 # Enemy exits range or dies

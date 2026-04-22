@@ -1,7 +1,7 @@
 extends Area2D
 
 var max_asteroids := 20
-onready var asteroid = preload("res://Scenes/Game/Entities/Asteriod/Asteriod.tscn")
+@onready var asteroid = preload("res://Scenes/Game/Entities/Asteriod/Asteriod.tscn")
 
 var asteroid_radius := 20.0
 var max_attempts := 20
@@ -15,12 +15,12 @@ func spawn_initial_asteroids():
 
 
 func spawn_one():
-	var area_radius = $Area.shape.radius * $Area.global_scale.x
-	var ast = asteroid.instance()
+	var area_radius = $Area3D.shape.radius * $Area3D.global_scale.x
+	var ast = asteroid.instantiate()
 
 	ast.global_position = find_valid_position(area_radius)
 
-	ast.connect("destroyed", self, "_on_asteroid_destroyed", [ast])
+	ast.connect("destroyed", Callable(self, "_on_asteroid_destroyed").bind(ast))
 
 	$Asteroids.call_deferred("add_child", ast)
 

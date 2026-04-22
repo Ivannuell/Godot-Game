@@ -7,33 +7,36 @@ enum Team {
 	NEUTRAL
 }
 
-export (Team) var team = Team.PLAYER
+@export var team: Team = Team.PLAYER
 
-export var resource_type := "minerals"
-export var resource_amount := 500
-export var max_miners := 1
+@export var resource_type := "minerals"
+@export var resource_amount := 500
+@export var max_miners := 1
+
 
 var multiplier = 1
+var hits = 2
 
 signal destroyed
 
 var claimed_by = []
 var active_miners := []
 
-var rot_speed = rand_range(0.001, 0.05)
+var rot_speed = randf_range(0.001, 0.05)
 
 func _ready():
 	add_to_group('asteroids')
 	randomize()
 	
-	multiplier = rand_range(0.5, 3)
+	multiplier = randf_range(0.5, 2)
 	
 	resource_amount *= multiplier
-	$Sprite.set_scale(Vector2(multiplier, multiplier))
+	hits = ceil(hits * multiplier)
+	$Sprite2D.set_scale(Vector2(multiplier, multiplier))
 	$CollisionShape2D.set_scale(Vector2(multiplier, multiplier))
 	max_miners = max(1, int(multiplier))
 	
-	$Sprite.frame = rand_range(0, $Sprite.hframes)
+	$Sprite2D.frame = randf_range(0, $Sprite2D.hframes)
 
 
 func _process(delta):
@@ -60,7 +63,10 @@ func claim(miner):
 
 
 func receive_damage(_damage_data):
-	die()
+	hits -= 1
+	if hits <= 0:
+		die()
+		
 
 
 func die():

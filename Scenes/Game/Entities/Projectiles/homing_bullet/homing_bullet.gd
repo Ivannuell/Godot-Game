@@ -50,5 +50,6 @@ func _on_Area2D_area_entered(area):
 	if area.get_parent().team == team:
 		return
 	
-	SignalBus.emit_signal("hit", area, damage_data)
+	SignalBus.emit_signal("entity_damaged",area, damage_data)
+	SignalBus.emit_signal("hit", self)
 	queue_free()

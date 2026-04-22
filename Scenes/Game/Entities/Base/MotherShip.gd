@@ -1,10 +1,10 @@
 extends Base
 
 
-onready var EnemyBase = $"../../Enemies/Base"
+@onready var EnemyBase = $"../../Enemies/Base"
 
 var center = Vector2.ZERO
-var orbit_angle = deg2rad(180)
+var orbit_angle = deg_to_rad(180)
 
 func _ready():
 	center = EnemyBase.global_position
@@ -22,4 +22,10 @@ func _physics_process(delta):
 	global_position.y = center.y + oy
 	
 	rotation = atan2(dx, dy)
+	
+	time += delta
+	
+	if time >= 1:
+		self.minerals += GameEconomy.passiveIncome
+		time = 0.0
 	

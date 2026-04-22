@@ -1,16 +1,16 @@
 extends Area2D
 
-export var lifetime: float = 0.1
+@export var lifetime: float = 0.1
 var damage_data = null
 
 
 func _ready():
 	add_to_group("damage_area")
 	
-	yield(get_tree(), "physics_frame")
+	await get_tree().physics_frame
 	_apply_damage()
 	
-	yield(get_tree().create_timer(lifetime), "timeout")
+	await get_tree().create_timer(lifetime).timeout
 	queue_free()
 
 

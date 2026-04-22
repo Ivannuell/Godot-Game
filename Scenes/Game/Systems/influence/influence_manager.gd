@@ -20,7 +20,7 @@ func _ready():
 func register_enemy(unit):
 	if unit in enemy_units:
 		return
-	unit.connect('tree_exited', self, '_on_enemy_removed', [unit])
+	unit.connect('tree_exited', Callable(self, '_on_enemy_removed').bind(unit))
 	enemy_units.append(unit)
 func _on_enemy_removed(unit):
 	enemy_units.erase(unit)
@@ -32,7 +32,7 @@ func register_resource(asteroid):
 	if asteroid in asteroids:
 		return
 
-	asteroid.connect('tree_exited', self, "_on_asteroid_removed", [asteroid])
+	asteroid.connect('tree_exited', Callable(self, "_on_asteroid_removed").bind(asteroid))
 	asteroids.append(asteroid)
 func _on_asteroid_removed(unit):
 	asteroids.erase(unit)	
