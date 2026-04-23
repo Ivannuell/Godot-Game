@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Weapons/MiningTool/MiningTool_Player.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Weapons/Launcher/MissileLauncher.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Base/Base.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://3jl2iiuhnru3" path="res://Scenes/Game/Entities/Base/Base.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/UI/PlayerHUD.tscn" id="4"]
 [ext_resource type="Script" uid="uid://une16tju2g15" path="res://Scenes/Game/Entities/Player/Player.gd" id="5"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Systems/DamageSystem.tscn" id="6"]
@@ -167,7 +167,7 @@ rotation = 6.28
 team = 1
 
 [node name="Base" parent="Entities/Enemies" unique_id=1935079176 instance=ExtResource("3")]
-position = Vector2(3408, 1952)
+position = Vector2(3350, 1953)
 team = 1
 
 [node name="BasicTurret" parent="Entities/Enemies" unique_id=994015872 instance=ExtResource("20")]

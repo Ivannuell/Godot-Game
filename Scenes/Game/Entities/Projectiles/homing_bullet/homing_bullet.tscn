@@ -1,25 +1,26 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene format=3 uid="uid://biulxejs37u5b"]
 
-[ext_resource path="res://Scenes/Game/Entities/Projectiles/homing_bullet/homing_bullet.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Game/Entities/Projectiles/homing_bullet/Fragment01.png" type="Texture2D" id=2]
+[ext_resource type="Script" uid="uid://br1fpwyt6fua8" path="res://Scenes/Game/Entities/Projectiles/homing_bullet/homing_bullet.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://d14i3qob0nfha" path="res://Scenes/Game/Entities/Projectiles/homing_bullet/Fragment01.png" id="2"]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 3.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4rirh"]
+radius = 6.0
+height = 20.0
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="Area2D" unique_id=409393457]
 show_behind_parent = true
-collision_layer = 0
+collision_layer = 2
 collision_mask = 137
 monitorable = false
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 3.14159
-scale = Vector2( 2.22673, 2.22673 )
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1754398202]
 z_index = -1
-texture = ExtResource( 2 )
+rotation = 3.14159
+scale = Vector2(2.22673, 2.22673)
+texture = ExtResource("2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=280944862]
+shape = SubResource("CapsuleShape2D_4rirh")
 
 [connection signal="area_entered" from="." to="." method="_on_Area2D_area_entered"]

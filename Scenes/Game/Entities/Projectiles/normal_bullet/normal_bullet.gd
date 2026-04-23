@@ -1,6 +1,6 @@
-extends Area2D
-var team
-var _owner
+extends Projectile
+class_name Bullet
+
 
 var speed = 500
 var rot: float
@@ -42,7 +42,10 @@ func _on_Area2D_area_entered(area):
 		
 	if area.get_parent().team == team:
 		return
+		
+	SignalBus.emit_signal("entity_damaged" ,area, damage_data)
+	on_hit(area)
 	
-	SignalBus.emit_signal("entity_damaged",area, damage_data)
+func on_hit(target):
 	SignalBus.emit_signal("hit" ,self)
 	queue_free()

@@ -1,9 +1,8 @@
-extends Area2D
+extends Projectile
+class_name Missile
 
 var rot := 0.0
 var forward = Vector2.UP
-var _owner = null
-var team
 
 const MAX_SPEED = 600
 const DAMAGE = 300
@@ -38,5 +37,8 @@ func _on_Missile_area_entered(area):
 	if area.get_parent() == _owner:
 		return
 
+	on_hit(area)
+	
+func on_hit(target):
 	SignalBus.emit_signal('explosion' ,global_position , 200, damage_data)
 	queue_free()

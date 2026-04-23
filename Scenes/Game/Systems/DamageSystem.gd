@@ -5,9 +5,9 @@ const AREA_EXPLOSION_FX = preload("res://Scenes/Game/Entities/Components/FX/Area
 const PROJECTILE_EXPLOSTION_FX = preload("res://Scenes/Game/Entities/Components/FX/Projectile_Explosion/Projectile_Explosion.tscn")
 
 func _ready():
-	SignalBus.connect("entity_damaged", Callable(self, "_on_entity_damaged"))
-	SignalBus.connect("explosion", Callable(self, "on_explosion"))
-	SignalBus.connect("hit", Callable(self, "on_hit"))
+	SignalBus.connect("entity_damaged", _on_entity_damaged)
+	SignalBus.connect("explosion", _on_explosion)
+	SignalBus.connect("hit", _on_hit)
 
 
 func _on_entity_damaged(hurtbox, damage_data):
@@ -15,7 +15,7 @@ func _on_entity_damaged(hurtbox, damage_data):
 	
 
 
-func on_explosion(pos, radius, damage_data):
+func _on_explosion(pos, radius, damage_data):
 	var explosion = DAMAGE_AREA.instantiate()
 	var explosionFX = AREA_EXPLOSION_FX.instantiate()
 	
@@ -29,7 +29,7 @@ func on_explosion(pos, radius, damage_data):
 	add_child(explosionFX)
 
 
-func on_hit(source):
+func _on_hit(source):
 	#Spawns a hit animation
 	var fx = PROJECTILE_EXPLOSTION_FX.instantiate()
 	fx.global_position = source.global_position

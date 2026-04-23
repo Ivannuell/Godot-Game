@@ -14,7 +14,6 @@ func _ready():
 	current_health = max_hp
 
 
-
 func apply_damage(damage: DamageData):
 	var final_damage = calculate_damage(damage)
 	current_health -= final_damage
