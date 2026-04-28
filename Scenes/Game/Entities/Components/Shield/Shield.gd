@@ -16,19 +16,20 @@ func _physics_process(delta: float) -> void:
 		visible = true
 	else:
 		visible = false
-	
-	
 
+
+#FIXME: Bullets can also trigger the cooldown reset of the shield
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Spaceship:
 		if GameData.get_opposite_team(area.team) != get_parent().team:
 			return
-		add_shield_count()
+		else:
+			add_shield_count()
 
 	if ent_count >= 1:
 		active = false
 	else:
-		active = true
+		$Timer.start()
 	
 	if not active:
 		return
@@ -39,7 +40,6 @@ func _on_area_entered(area: Area2D) -> void:
 			return
 			
 		area.on_hit(self)
-		
 
 
 func _on_area_exited(area: Area2D) -> void:
@@ -47,4 +47,9 @@ func _on_area_exited(area: Area2D) -> void:
 		ent_count -= 1
 		
 func add_shield_count():
+	$Timer.stop()
 	self.ent_count += 1
+
+
+func _on_timer_timeout() -> void:
+	active = true

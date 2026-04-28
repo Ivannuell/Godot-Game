@@ -1,11 +1,6 @@
 res://default_env.tres
-res://Scenes/Game/Entities/Components/Shield/Shield.tscn
+res://Scenes/Game/Layers/Game/Game.tscn
 res://Themes/default.tres
 res://Scenes/Game/Entities/Background/starfield.tres
+res://Scenes/Game/Entities/Components/Shield/Shield.tscn
 res://Scenes/Game/Entities/Components/Shield/Shield.gd
-res://Scenes/Game/Layers/Game/Game.tscn
-res://Autoloads/GameData.gd
-res://Scenes/Game/Entities/Base/MotherShip.gd
-res://Scenes/Game/Entities/Projectiles/normal_bullet/normal_bullet.tscn
-res://Scenes/Game/Entities/Base/Base.tscn
-res://Scenes/Game/Entities/Projectiles/homing_bullet/homing_bullet.tscn
