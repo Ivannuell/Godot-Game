@@ -1,6 +1,0 @@
-res://default_env.tres
-res://Scenes/Game/Layers/Game/Game.tscn
-res://Themes/default.tres
-res://Scenes/Game/Entities/Background/starfield.tres
-res://Scenes/Game/Entities/Components/Shield/Shield.tscn
-res://Scenes/Game/Entities/Components/Shield/Shield.gd
