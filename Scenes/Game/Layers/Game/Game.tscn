@@ -167,7 +167,7 @@ rotation = 6.28
 team = 1
 
 [node name="Base" parent="Entities/Enemies" unique_id=1935079176 instance=ExtResource("3")]
-position = Vector2(3350, 1953)
+position = Vector2(3343, 1936)
 team = 1
 
 [node name="BasicTurret" parent="Entities/Enemies" unique_id=994015872 instance=ExtResource("20")]
@@ -191,7 +191,7 @@ position = Vector2(3328, 1672)
 team = 1
 
 [node name="BasicTurret6" parent="Entities/Enemies" unique_id=58702785 instance=ExtResource("20")]
-position = Vector2(3336, 2160)
+position = Vector2(3351, 2158)
 team = 1
 
 [node name="Player" type="CharacterBody2D" parent="Entities" unique_id=993144507 groups=["Allies", "allies"]]
