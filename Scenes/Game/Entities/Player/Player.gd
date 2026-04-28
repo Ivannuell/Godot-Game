@@ -18,6 +18,8 @@ var target_multi = 1.0
 var speed_up_multi = 1.0
 var rotation_multi = 1.0
 
+var aiming = false
+
 var boost_available := true
 @onready var engine_particles = $ThrusterParticles
 
@@ -53,6 +55,9 @@ func handle_rotation(delta):
 
 	if Input.is_action_pressed("right"):
 		rotate_dir += 1
+		
+	if aiming:
+		rotation_multi = 0.3
 
 	rotation += rotate_dir * ROTATION_SPEED * rotation_multi * delta
 
@@ -97,6 +102,9 @@ func apply_friction(delta):
 	if not Input.is_action_pressed("move"):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * speed_up_multi * delta)
 
+
+func apply_aiming_rotation(status):
+	aiming = status
 
 
 func receive_damage(damage_data):

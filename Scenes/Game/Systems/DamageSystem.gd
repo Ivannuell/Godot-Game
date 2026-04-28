@@ -12,9 +12,9 @@ func _ready():
 
 func _on_entity_damaged(hurtbox, damage_data):
 	hurtbox.receive_damage(damage_data)
-	
 
 
+#TODO: Does both FX and Logic effect of expolosion should fix.
 func _on_explosion(pos, radius, damage_data):
 	var explosion = DAMAGE_AREA.instantiate()
 	var explosionFX = AREA_EXPLOSION_FX.instantiate()
@@ -29,11 +29,13 @@ func _on_explosion(pos, radius, damage_data):
 	add_child(explosionFX)
 
 
+#TODO: Maybe fixed the naming and make it explicit that it only handle's FX for projectile hit
 func _on_hit(source):
 	#Spawns a hit animation
 	var fx = PROJECTILE_EXPLOSTION_FX.instantiate()
 	fx.global_position = source.global_position
 	add_child(fx)
+
 
 func random_point_in_circle(center: Vector2, radius: float) -> Vector2:
 	var u := randf()
