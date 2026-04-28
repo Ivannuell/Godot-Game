@@ -5,6 +5,7 @@ signal game_over(base)
 
 signal gun_shoot(gun)
 signal missile_launch(launcher)
+signal missile_aim(launcher)
 
 signal explosion(pos, radius, damage_data)
 signal hit(source)
