@@ -8,3 +8,5 @@ var source_pos
 var source
 var source_team
 var owner
+
+var on_hit_FX

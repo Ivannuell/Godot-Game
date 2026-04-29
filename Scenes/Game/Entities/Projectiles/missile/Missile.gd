@@ -6,6 +6,9 @@ var forward = Vector2.UP
 
 const MAX_SPEED = 600
 const DAMAGE = 300
+const ON_HIT_FX = preload("res://Scenes/Game/Entities/Components/FX/Missile_Exlplosion_Sprite/MissileExplosion.tscn")
+
+
 var damage_data = DamageData.new()
 var elapsed = 0.0
 var speed = 0
@@ -20,6 +23,8 @@ func _setup(gun):
 	damage_data.source = _owner
 	damage_data.amount = DAMAGE
 	damage_data.source_team = team
+	
+	damage_data.on_hit_FX = ON_HIT_FX
 
 
 func _physics_process(delta):
