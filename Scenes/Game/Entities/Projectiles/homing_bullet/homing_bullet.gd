@@ -1,10 +1,13 @@
 extends Projectile
 class_name Homing_bullet
 
-var speed = 500
+var speed = 600
 var rot: float
 var direction: Vector2
+
 const MAX_TRAVEL_TIME = 1
+const ON_HIT_FX = preload("res://Scenes/Game/Entities/Components/FX/Projectile_Explosion/Projectile_Explosion.tscn")
+
 var elapsed = 0.0
 var target = null
 
@@ -23,8 +26,8 @@ func _setup(gun):
 	damage_data.owner = _owner
 	damage_data.amount = DAMAGE
 	damage_data.source_team = team
-
-
+	
+	damage_data.on_hit_FX = ON_HIT_FX
 
 func _physics_process(delta):
 	if target == null or not is_instance_valid(target):
@@ -53,5 +56,5 @@ func _on_Area2D_area_entered(area):
 	on_hit(area)
 	
 func on_hit(target):
-	SignalBus.emit_signal("hit" ,self)
+	SignalBus.emit_signal("hit" ,self, damage_data)
 	queue_free()
