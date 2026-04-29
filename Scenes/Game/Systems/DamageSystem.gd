@@ -22,14 +22,15 @@ func _on_explosion(pos, radius, damage_data):
 	explosion.damage_data = damage_data
 	
 	call_deferred("add_child", explosion)
-	_on_explosion_FX(pos)
+	_on_explosion_FX(pos, damage_data.on_hit_FX)
 
 
-func _on_explosion_FX(pos):
-	var explosionFX = AREA_EXPLOSION_FX.instantiate()
+func _on_explosion_FX(pos, FX):
+	var explosionFX = FX.instantiate()
 	explosionFX.global_position = pos
 	
 	call_deferred("add_child", explosionFX)
+
 
 #TODO: Maybe fixed the naming and make it explicit that it only handle's FX for projectile hit
 func _on_hit(source):
