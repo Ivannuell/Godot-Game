@@ -9,7 +9,7 @@ const MAX_TRAVEL_TIME = 2
 const ON_HIT_FX = preload("res://Scenes/Game/Entities/Components/FX/Projectile_Explosion/Projectile_Explosion.tscn")
 var elapsed = 0.0
 
-const DAMAGE = 10
+const DAMAGE = 30
 var damage_data = DamageData.new()
 
 func _setup(gun):
