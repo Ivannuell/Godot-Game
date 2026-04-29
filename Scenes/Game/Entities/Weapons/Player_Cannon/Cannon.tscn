@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctn3q1yhmos1p"]
 
 [ext_resource type="Script" uid="uid://dksmafivb3l1f" path="res://Scenes/Game/Entities/Weapons/Player_Cannon/Cannon.gd" id="1"]
-[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Projectiles/normal_bullet/normal_bullet.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b5ldb68xje6o1" path="res://Scenes/Game/Entities/Projectiles/normal_bullet/normal_bullet.tscn" id="2"]
 
 [node name="Cannon" type="Node2D" unique_id=1395672354]
 script = ExtResource("1")
