@@ -118,10 +118,6 @@ animations = [{
 [node name="Game" type="Node2D" unique_id=1157233785]
 script = ExtResource("17")
 
-[node name="Starfield" parent="." unique_id=1964500512 instance=ExtResource("24")]
-layer = -7
-camera_path = NodePath("../Entities/Player/Pivot/CameraOffset/Camera2D")
-
 [node name="Entities" type="Node" parent="." unique_id=2082881190]
 
 [node name="Allies" type="Node" parent="Entities" unique_id=1734246007]
@@ -200,6 +196,10 @@ z_as_relative = false
 position = Vector2(296, 1968)
 collision_mask = 140
 script = ExtResource("5")
+
+[node name="Starfield" parent="Entities/Player" unique_id=1964500512 instance=ExtResource("24")]
+layer = -7
+camera_path = NodePath("../Pivot/CameraOffset/Camera2D")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Entities/Player" unique_id=2081110912]
 position = Vector2(0, 4)
