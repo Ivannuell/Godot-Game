@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://gqxcg1uv6ekg"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Weapons/MiningTool/MiningTool_Player.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Weapons/Launcher/MissileLauncher.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://c4xdecvwxul2f" path="res://Scenes/Game/Entities/Weapons/Launcher/MissileLauncher.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://3jl2iiuhnru3" path="res://Scenes/Game/Entities/Base/Base.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/UI/PlayerHUD.tscn" id="4"]
 [ext_resource type="Script" uid="uid://une16tju2g15" path="res://Scenes/Game/Entities/Player/Player.gd" id="5"]

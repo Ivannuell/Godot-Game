@@ -14,20 +14,22 @@ func _on_entity_damaged(hurtbox, damage_data):
 	hurtbox.receive_damage(damage_data)
 
 
-#TODO: Does both FX and Logic effect of expolosion should fix.
 func _on_explosion(pos, radius, damage_data):
 	var explosion = DAMAGE_AREA.instantiate()
-	var explosionFX = AREA_EXPLOSION_FX.instantiate()
-	
 	explosion.global_position = pos
-	explosionFX.global_position = pos
+	
 	explosion.get_node("Shape3D").shape.radius = radius
 	explosion.damage_data = damage_data
 	
-	await get_tree().physics_frame
-	add_child(explosion)
-	add_child(explosionFX)
+	call_deferred("add_child", explosion)
+	_on_explosion_FX(pos)
 
+
+func _on_explosion_FX(pos):
+	var explosionFX = AREA_EXPLOSION_FX.instantiate()
+	explosionFX.global_position = pos
+	
+	call_deferred("add_child", explosionFX)
 
 #TODO: Maybe fixed the naming and make it explicit that it only handle's FX for projectile hit
 func _on_hit(source):
