@@ -40,6 +40,7 @@ func _physics_process(delta):
 
 		State.MOVING:
 			update_movement(delta, target)
+			
 
 		State.MINING:
 			mine_target(delta)
@@ -86,6 +87,8 @@ func update_movement(delta, move_target):
 	# --- Move Forward Based on Current Rotation ---
 	var forward = Vector2.UP.rotated(rotation)
 	set_velocity(forward * SPEED)
+	
+	
 	move_and_slide()
 
 
@@ -140,16 +143,31 @@ func change_state(new_state):
 	if state == new_state:
 		return
 
-	# Do something before switching from a state
+	var old_state = state
+
+	# --- BEFORE SWITCH ---
 	if state == State.MINING and mining_tool:
 		mining_tool.stop_beam()
 
+	# Leaving movement → play END
+	if state in [State.MOVING, State.RETURNING] \
+	and new_state not in [State.MOVING, State.RETURNING]:
+		$Thrusters.play("end")
+
 	state = new_state
-	
-	# Do something after switching to a new state
+
+	# --- AFTER SWITCH ---
 	if state == State.MINING and mining_tool:
 		mining_tool.start_beam(target)
+		$Thrusters.play("idle")
 
+	elif state in [State.MOVING, State.RETURNING]:
+		# Only play START if we weren’t already moving
+		if old_state not in [State.MOVING, State.RETURNING]:
+			$Thrusters.play("start")
+
+	elif state == State.SEARCHING:
+		$Thrusters.play("idle")
 
 func find_target():
 	if Cargo.current >= Cargo.capacity:
@@ -203,3 +221,13 @@ func receive_damage(damage_data):
 func die():
 	SignalBus.emit_signal("cargo_spawned", $Cargo)
 	queue_free()
+
+
+func _on_thrusters_animation_finished() -> void:
+	var anim = $Thrusters.animation
+
+	if anim == "start" and state in [State.MOVING, State.RETURNING]:
+		$Thrusters.play("active")
+
+	elif anim == "end":
+		$Thrusters.play("idle")
