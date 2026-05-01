@@ -27,7 +27,7 @@ enum Team {
 var target_direction := Vector2.ZERO
 
 var acceleration := 300.0
-var max_speed := 250.0
+var max_speed := 150.0
 var friction := 100.0
 var current_direction := Vector2.RIGHT
 var turn_speed := 5.0
