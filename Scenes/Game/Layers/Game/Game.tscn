@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://gqxcg1uv6ekg"]
 
+[ext_resource type="PackedScene" uid="uid://dgaiqgns5e8fp" path="res://Scenes/Game/Entities/Player/Player.tscn" id="2_jwfff"]
 [ext_resource type="PackedScene" uid="uid://3jl2iiuhnru3" path="res://Scenes/Game/Entities/Base/Base.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Systems/DamageSystem.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Systems/DeathSystem.tscn" id="7"]
@@ -22,8 +23,16 @@
 [ext_resource type="PackedScene" uid="uid://c1x5ul51imb28" path="res://Scenes/Game/Layers/GameOver/GameOverLayer.tscn" id="30"]
 [ext_resource type="Texture2D" uid="uid://dqwn6uxrf2cal" path="res://Scenes/Game/Entities/Base/MotherShip.png" id="31"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jwfff"]
+vertices = PackedVector2Array(7466.2188, 5565.047, -1143.0469, 5612.9375, -1178.9375, -1477.0313, 7629.758, -1506.9609)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1189, -1487, -1153, 5623, 7476, 5575, 7640, -1517)])
+
 [node name="Game" type="Node2D" unique_id=1157233785]
 script = ExtResource("17")
+
+[node name="Player" parent="." unique_id=870247989 instance=ExtResource("2_jwfff")]
+position = Vector2(-1, -1)
 
 [node name="Entities" type="Node" parent="." unique_id=2082881190]
 
@@ -269,6 +278,10 @@ visible = false
 
 [node name="GameOverLayer" parent="." unique_id=756135265 instance=ExtResource("30")]
 visible = false
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=390185910]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_jwfff")
 
 [connection signal="pressed" from="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot/Panel/Container/Manufacture" to="UI/Shop" method="_on_Manufacture_pressed" flags=3 binds= ["MINER"]]
 [connection signal="pressed" from="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot2/Panel/Container/Manufacture" to="UI/Shop" method="_on_Manufacture_pressed" flags=3 binds= ["ATTACK"]]

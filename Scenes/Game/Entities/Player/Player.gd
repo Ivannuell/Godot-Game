@@ -22,6 +22,8 @@ var aiming = false
 
 var boost_available := true
 @onready var engine_particles = $ThrusterParticles
+@onready var agent = $NavigationAgent2D
+var speed = 200
 
 var curr_anim = 'idle'
 var anim = ''
@@ -29,7 +31,36 @@ var anim = ''
 func _ready():
 	add_to_group(str(team))
 
+
+
 func _physics_process(delta):
+	if agent.is_navigation_finished():
+		velocity = Vector2.ZERO
+		return
+	
+	var next_point = agent.get_next_path_position()
+	var direction = (next_point - global_position).normalized()
+	
+	velocity = direction * speed
+	
+	rotation = lerp_angle(
+			rotation, velocity.angle() + PI/2, 0.05
+		)
+	move_and_slide()
+
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		var target_pos = get_global_mouse_position()
+		$NavigationAgent2D.target_position = target_pos
+		
+		
+
+
+
+
+#--------------- DEPRECATED across this line ------------------
+func __physics_process(delta):
 	handle_rotation(delta)
 	handle_thrust(delta)
 	apply_friction(delta)
@@ -45,7 +76,6 @@ func _physics_process(delta):
 		
 	$AnimatedSprite2D.play(curr_anim)
 	anim = curr_anim
-	
 	
 func handle_rotation(delta):
 	var rotate_dir := 0
@@ -67,8 +97,6 @@ func handle_rotation(delta):
 		curr_anim = "move-right"
 	else:
 		curr_anim = "idle"
-
-
 
 func handle_thrust(delta):
 	if Input.is_action_pressed("boost") and boost_available:
@@ -96,16 +124,13 @@ func handle_thrust(delta):
 	if Input.is_action_pressed("move"):
 		var forward := Vector2.UP.rotated(rotation)
 		velocity += forward * ACCELERATION * speed_up_multi * delta
-		
 
 func apply_friction(delta):
 	if not Input.is_action_pressed("move"):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * speed_up_multi * delta)
 
-
 func apply_aiming_rotation(status):
 	aiming = status
-
 
 func receive_damage(damage_data):
 	var health = get_node_or_null("Health")
