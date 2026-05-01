@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b6ona30vump56" path="res://Scenes/Game/Entities/Background/Starfield.tscn" id="7_63rtl"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Weapons/MiningTool/MiningTool_Player.tscn" id="9_cmtku"]
 [ext_resource type="PackedScene" uid="uid://c4xdecvwxul2f" path="res://Scenes/Game/Entities/Weapons/Launcher/MissileLauncher.tscn" id="10_5b0e2"]
+[ext_resource type="Script" uid="uid://fvp2dqjsjmpj" path="res://Scenes/Game/Entities/Player/area_2d.gd" id="11_5jbeo"]
 [ext_resource type="Material" uid="uid://dcxr6wsqdrugs" path="res://Scenes/Game/Entities/Player/Shield.tres" id="11_73qvh"]
 
 [sub_resource type="RectangleShape2D" id="1"]
@@ -155,7 +156,9 @@ scale = Vector2(1.9999983, 1.9999983)
 [node name="MissileLauncher" parent="." unique_id=1269316426 instance=ExtResource("10_5b0e2")]
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1652774944]
+position = Vector2(0, -6)
 scale = Vector2(2, 2)
+script = ExtResource("11_5jbeo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=11231527]
 scale = Vector2(-27.187216, -27.187216)
@@ -165,3 +168,6 @@ shape = SubResource("CircleShape2D_5jbeo")
 material = ExtResource("11_73qvh")
 scale = Vector2(3.3827538, 16.506882)
 texture = ExtResource("2")
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="Area2D" method="_on_area_exited"]

@@ -24,6 +24,8 @@ enum Team {
 #var velocity := Vector2.ZERO
 @onready var engine_particles = $ThrusterParticles
 
+var enemies_in_range :Array = []
+
 var target_direction := Vector2.ZERO
 
 var acceleration := 300.0
@@ -46,7 +48,6 @@ func _unhandled_input(event):
 		target_direction = dir
 	
 	
-	
 func _physics_process(delta):
 	if Input.is_action_pressed("brake_input"):
 		var speed_ratio = velocity.length() / max_speed
@@ -59,11 +60,27 @@ func _physics_process(delta):
 		
 		if velocity.length() > max_speed:
 			velocity = velocity.normalized() * max_speed
+	else:
+		velocity = Vector2.ZERO
 	
 	current_direction = current_direction.lerp(target_direction, turn_speed * delta).normalized()
 	velocity += current_direction * acceleration * delta
 	rotation = lerp_angle(rotation, velocity.angle() + PI/2, 0.5)
 	move_and_slide()
+
+func add_enemy_in_range(enemy):
+	if enemy.team != team:
+		enemies_in_range.append(enemy)
+	
+		print(enemy.name, " inserted")
+		print(enemies_in_range)
+	
+func remove_enemy_in_range(enemy):
+	if enemies_in_range.has(enemy):
+		enemies_in_range.erase(enemy)
+		
+	print(enemy.name, " removed")
+	print(enemies_in_range)
 	
 
 #--------------- DEPRECATED methods ------------------
