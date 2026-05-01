@@ -72,16 +72,10 @@ func add_enemy_in_range(enemy):
 	if enemy.team != team:
 		enemies_in_range.append(enemy)
 	
-		print(enemy.name, " inserted")
-		print(enemies_in_range)
-	
 func remove_enemy_in_range(enemy):
 	if enemies_in_range.has(enemy):
 		enemies_in_range.erase(enemy)
-		
-	print(enemy.name, " removed")
-	print(enemies_in_range)
-	
+
 
 #--------------- DEPRECATED methods ------------------
 #func __physics_process(delta):

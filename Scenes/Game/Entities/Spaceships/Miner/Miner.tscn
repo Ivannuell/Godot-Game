@@ -176,6 +176,9 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="1"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_rsyjw"]
+font_size = 32
+
 [node name="Miner" type="CharacterBody2D" unique_id=853180977]
 z_index = 51
 rotation = 6.28318
@@ -238,5 +241,15 @@ max_hp = 300
 
 [node name="HurtBox" parent="." unique_id=1367566931 instance=ExtResource("1")]
 scale = Vector2(2.6577773, 2.6577773)
+
+[node name="UIanchor" type="Node2D" parent="." unique_id=1463305110]
+
+[node name="Label" type="Label" parent="UIanchor" unique_id=1597362144]
+offset_left = -44.075714
+offset_top = -58.57153
+offset_right = 44.828667
+offset_bottom = -35.57153
+label_settings = SubResource("LabelSettings_rsyjw")
+vertical_alignment = 1
 
 [connection signal="animation_finished" from="Thrusters" to="." method="_on_thrusters_animation_finished"]

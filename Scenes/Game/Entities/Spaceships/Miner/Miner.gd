@@ -7,6 +7,8 @@ var target = null
 
 @onready var mining_tool = get_node_or_null("MiningTool")
 
+var word = "asteriod"
+
 enum State {
 	SEARCHING,
 	MOVING,
@@ -25,15 +27,20 @@ func _ready():
 	dodge_timer = 0.0
 	dodge_duration = 1
 	
+	
+	
 	add_to_group(str(team))
 	
 	if team == Team.ENEMY:
 		set_modulate(Color(0.95, 0.55, 0.55))
+		$UIanchor/Label.text = word
 		add_to_group("enemy_miners")
 	elif team == Team.PLAYER:
 		add_to_group("player_miners")
 
 func _physics_process(delta):
+	$UIanchor.global_rotation = 0
+	
 	match state:
 		State.SEARCHING:
 			find_target()
