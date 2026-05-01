@@ -136,6 +136,7 @@ position = Vector2(3, -0.999989)
 [node name="Camera2D" type="Camera2D" parent="Pivot/CameraOffset" unique_id=1379350192]
 position = Vector2(64, 0)
 limit_smoothed = true
+rotation_smoothing_enabled = true
 drag_bottom_margin = 0.4
 editor_draw_drag_margin = true
 script = ExtResource("3")
@@ -154,7 +155,7 @@ scale = Vector2(1.9999983, 1.9999983)
 [node name="MissileLauncher" parent="." unique_id=1269316426 instance=ExtResource("10_5b0e2")]
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1652774944]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=11231527]
 scale = Vector2(-27.187216, -27.187216)
