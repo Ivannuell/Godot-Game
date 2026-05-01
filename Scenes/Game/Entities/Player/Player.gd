@@ -50,7 +50,8 @@ func _physics_process(delta):
 
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.pressed:
+	#if event is InputEventMouseButton and event.pressed:
+	if event.is_action_pressed("move_input"):
 		var target_pos = get_global_mouse_position()
 		$NavigationAgent2D.target_position = target_pos
 		
