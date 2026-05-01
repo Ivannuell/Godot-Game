@@ -66,7 +66,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 
-#--------------- DEPRECATED methods across this line ------------------
+#--------------- DEPRECATED methods ------------------
 #func __physics_process(delta):
 	#handle_rotation(delta)
 	#handle_thrust(delta)
@@ -137,7 +137,7 @@ func _physics_process(delta):
 		#velocity = velocity.move_toward(Vector2.ZERO, FRICTION * speed_up_multi * delta)
 #
 
-##------------- Spaceship related logic ------------------#
+#------------- Spaceship related logic ------------------#
 #func apply_aiming_rotation(status):
 	#aiming = status
 
