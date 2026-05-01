@@ -141,11 +141,3 @@ position = Vector2(0, 4)
 scale = Vector2(2.141945, 2.2559023)
 
 [node name="Health" parent="." unique_id=1377632021 instance=ExtResource("6")]
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1435896282]
-avoidance_enabled = true
-radius = 1.0
-neighbor_distance = 1500.0
-max_neighbors = 20
-
-[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

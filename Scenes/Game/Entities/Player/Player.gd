@@ -22,7 +22,6 @@ var aiming = false
 
 var boost_available := true
 @onready var engine_particles = $ThrusterParticles
-@onready var agent = $NavigationAgent2D
 
 var speed = 500
 
@@ -31,35 +30,6 @@ var anim = ''
 
 func _ready():
 	add_to_group(str(team))
-
-
-func _physics_process(delta):
-	if agent.is_navigation_finished():
-		velocity = Vector2.ZERO
-		return
-
-	var next_point = agent.get_next_path_position()
-	var desired_velocity = (next_point - global_position).normalized() * speed
-	
-	agent.set_velocity(desired_velocity)
-	
-	rotation = lerp_angle(
-			rotation, velocity.angle() + PI/2, 0.1
-		)
-	move_and_slide()
-
-
-func _unhandled_input(event):
-	#if event is InputEventMouseButton and event.pressed:
-	if event.is_action_pressed("move_input"):
-		var target_pos = get_global_mouse_position()
-		$NavigationAgent2D.target_position = target_pos
-
-
-func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
-	velocity = safe_velocity.normalized() * speed
-	#move_and_slide()
-
 
 
 #--------------- DEPRECATED across this line ------------------
@@ -132,6 +102,9 @@ func apply_friction(delta):
 	if not Input.is_action_pressed("move"):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * speed_up_multi * delta)
 
+
+
+#------------- Spaceship related logic ------------------#
 func apply_aiming_rotation(status):
 	aiming = status
 
