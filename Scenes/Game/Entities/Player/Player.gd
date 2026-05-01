@@ -44,7 +44,7 @@ func _physics_process(delta):
 	velocity = direction * speed
 	
 	rotation = lerp_angle(
-			rotation, velocity.angle() + PI/2, 0.05
+			rotation, velocity.angle() + PI/2, 0.02
 		)
 	move_and_slide()
 
