@@ -20,7 +20,7 @@ func _physics_process(delta):
 			can_launch = false
 			$Cooldown.start()
 	
-	get_parent().apply_aiming_rotation(aim_active)
+	#get_parent().apply_aiming_rotation(aim_active)
 
 func _on_Timer_timeout():
 	can_launch = true
