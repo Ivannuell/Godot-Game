@@ -23,6 +23,7 @@ var aiming = false
 var boost_available := true
 @onready var engine_particles = $ThrusterParticles
 @onready var agent = $NavigationAgent2D
+
 var speed = 500
 
 var curr_anim = 'idle'
@@ -30,7 +31,6 @@ var anim = ''
 
 func _ready():
 	add_to_group(str(team))
-
 
 
 func _physics_process(delta):

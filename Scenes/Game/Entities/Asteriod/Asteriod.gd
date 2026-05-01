@@ -34,15 +34,34 @@ func _ready():
 	hits = ceil(hits * multiplier)
 	$Sprite2D.set_scale(Vector2(multiplier, multiplier))
 	$CollisionShape2D.set_scale(Vector2(multiplier, multiplier))
-	$NavigationObstacle2D.radius *= multiplier
+	#$NavigationObstacle2D.radius *= multiplier
 	max_miners = max(1, int(multiplier))
 	
 	$Sprite2D.frame = randf_range(0, $Sprite2D.hframes)
+	apply_separation()
 
+func _physics_process(delta: float) -> void:
+	pass
 
 func _process(delta):
 	rotation += rot_speed
 	clamp(rotation, 0, PI)
+	
+func apply_separation():
+	var push = Vector2.ZERO
+	var min_dist = 32.0
+
+	for other in get_parent().get_children():
+		if other == self:
+			continue
+
+		var diff = global_position - other.global_position
+		var dist = diff.length()
+
+		if dist < min_dist and dist > 0:
+			push += diff.normalized() * (min_dist - dist)
+
+	global_position += push * 0.1
 	
 func mine(amount):
 	var extracted = min(amount, resource_amount)

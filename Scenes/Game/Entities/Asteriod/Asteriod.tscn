@@ -9,7 +9,7 @@
 radius = 16.0
 
 [node name="Asteriod" type="StaticBody2D" unique_id=1647916845 groups=["asteriods"]]
-collision_layer = 128
+collision_layer = 0
 collision_mask = 137
 script = ExtResource("2")
 team = 2
@@ -33,4 +33,5 @@ collision_layer = 137
 collision_mask = 137
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=1631160791]
-radius = 35.5
+radius = 20.0
+avoidance_enabled = false
