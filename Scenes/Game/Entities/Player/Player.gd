@@ -59,9 +59,6 @@ func _physics_process(delta):
 		
 		if velocity.length() > max_speed:
 			velocity = velocity.normalized() * max_speed
-	else:
-		# slow down if no input
-		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	
 	current_direction = current_direction.lerp(target_direction, turn_speed * delta).normalized()
 	velocity += current_direction * acceleration * delta
@@ -69,7 +66,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 
-#--------------- DEPRECATED across this line ------------------
+#--------------- DEPRECATED methods across this line ------------------
 #func __physics_process(delta):
 	#handle_rotation(delta)
 	#handle_thrust(delta)
@@ -139,8 +136,7 @@ func _physics_process(delta):
 	#if not Input.is_action_pressed("move"):
 		#velocity = velocity.move_toward(Vector2.ZERO, FRICTION * speed_up_multi * delta)
 #
-#
-#
+
 ##------------- Spaceship related logic ------------------#
 #func apply_aiming_rotation(status):
 	#aiming = status
