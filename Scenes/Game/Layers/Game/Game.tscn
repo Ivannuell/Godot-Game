@@ -1,10 +1,7 @@
 [gd_scene format=3 uid="uid://gqxcg1uv6ekg"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Weapons/MiningTool/MiningTool_Player.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://c4xdecvwxul2f" path="res://Scenes/Game/Entities/Weapons/Launcher/MissileLauncher.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dgaiqgns5e8fp" path="res://Scenes/Game/Entities/Player/Player.tscn" id="2_jwfff"]
 [ext_resource type="PackedScene" uid="uid://3jl2iiuhnru3" path="res://Scenes/Game/Entities/Base/Base.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://Scenes/Game/UI/PlayerHUD.tscn" id="4"]
-[ext_resource type="Script" uid="uid://une16tju2g15" path="res://Scenes/Game/Entities/Player/Player.gd" id="5"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Systems/DamageSystem.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Systems/DeathSystem.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Systems/ShootingSystem.tscn" id="8"]
@@ -21,102 +18,21 @@
 [ext_resource type="PackedScene" path="res://Scenes/Game/Layers/Paused/PauseLayer.tscn" id="19"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Turrets/Basic/BasicTurret.tscn" id="20"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Base/MotherShip.tscn" id="21"]
-[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Components/Cargo/Cargo.tscn" id="22"]
-[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Components/HurtBox/HurtBox.tscn" id="23"]
-[ext_resource type="PackedScene" uid="uid://b6ona30vump56" path="res://Scenes/Game/Entities/Background/Starfield.tscn" id="24"]
-[ext_resource type="Texture2D" uid="uid://cne06n4g55ur6" path="res://Scenes/Game/Entities/Player/Player01-Sheet.png" id="25"]
-[ext_resource type="Script" uid="uid://cqk57n4t7j0h0" path="res://Scenes/Game/Entities/Player/camera2D.gd" id="26"]
 [ext_resource type="Script" uid="uid://b2l500ojcl1xp" path="res://Scenes/Game/Systems/EnemyStategy.gd" id="27"]
 [ext_resource type="PackedScene" uid="uid://c56aiuspahc8" path="res://Scenes/Game/Entities/Spaceships/Attacker/Attacker.tscn" id="28"]
-[ext_resource type="PackedScene" uid="uid://ctn3q1yhmos1p" path="res://Scenes/Game/Entities/Weapons/Player_Cannon/Cannon.tscn" id="29"]
 [ext_resource type="PackedScene" uid="uid://c1x5ul51imb28" path="res://Scenes/Game/Layers/GameOver/GameOverLayer.tscn" id="30"]
 [ext_resource type="Texture2D" uid="uid://dqwn6uxrf2cal" path="res://Scenes/Game/Entities/Base/MotherShip.png" id="31"]
-[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Components/Health/Health.tscn" id="32"]
 
-[sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(32, 40)
-
-[sub_resource type="CanvasItemMaterial" id="20"]
-blend_mode = 1
-
-[sub_resource type="Curve" id="21"]
-_limits = [0.0, 3.0, 0.0, 1.0]
-_data = [Vector2(0, 3), 0.0, -3.0, 0, 1, Vector2(1, 0), -3.0, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="19"]
-offsets = PackedFloat32Array(0.00925926, 1)
-colors = PackedColorArray(0.0574493, 0.46127, 0.980469, 1, 1, 1, 1, 1)
-
-[sub_resource type="AtlasTexture" id="11"]
-atlas = ExtResource("25")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="14"]
-atlas = ExtResource("25")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="13"]
-atlas = ExtResource("25")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="12"]
-atlas = ExtResource("25")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="15"]
-atlas = ExtResource("25")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="16"]
-atlas = ExtResource("25")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="17"]
-atlas = ExtResource("25")
-region = Rect2(192, 0, 48, 48)
-
-[sub_resource type="SpriteFrames" id="9"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("11")
-}],
-"loop": false,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("14")
-}, {
-"duration": 1.0,
-"texture": SubResource("13")
-}, {
-"duration": 1.0,
-"texture": SubResource("12")
-}],
-"loop": false,
-"name": &"move-left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("15")
-}, {
-"duration": 1.0,
-"texture": SubResource("16")
-}, {
-"duration": 1.0,
-"texture": SubResource("17")
-}],
-"loop": false,
-"name": &"move-right",
-"speed": 5.0
-}]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jwfff"]
+vertices = PackedVector2Array(7466.2188, 5565.047, -1143.0469, 5612.9375, -1178.9375, -1477.0313, 7629.758, -1506.9609)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1189, -1487, -1153, 5623, 7476, 5575, 7640, -1517)])
 
 [node name="Game" type="Node2D" unique_id=1157233785]
 script = ExtResource("17")
+
+[node name="Player" parent="." unique_id=870247989 instance=ExtResource("2_jwfff")]
+position = Vector2(-1, -1)
 
 [node name="Entities" type="Node" parent="." unique_id=2082881190]
 
@@ -190,64 +106,6 @@ team = 1
 position = Vector2(3351, 2158)
 team = 1
 
-[node name="Player" type="CharacterBody2D" parent="Entities" unique_id=993144507 groups=["Allies", "allies"]]
-z_index = 51
-z_as_relative = false
-position = Vector2(296, 1968)
-collision_mask = 140
-script = ExtResource("5")
-
-[node name="Starfield" parent="Entities/Player" unique_id=1964500512 instance=ExtResource("24")]
-layer = -7
-camera_path = NodePath("../Pivot/CameraOffset/Camera2D")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Entities/Player" unique_id=2081110912]
-position = Vector2(0, 4)
-shape = SubResource("1")
-
-[node name="ThrusterParticles" type="CPUParticles2D" parent="Entities/Player" unique_id=952407231]
-material = SubResource("20")
-position = Vector2(0, 22)
-amount = 200
-speed_scale = 2.0
-fixed_fps = 60
-direction = Vector2(0, 1)
-spread = 0.0
-gravity = Vector2(0, 0)
-scale_amount_curve = SubResource("21")
-color = Color(0.0509804, 0.14902, 0.933333, 1)
-color_ramp = SubResource("19")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Entities/Player" unique_id=508788892]
-sprite_frames = SubResource("9")
-animation = &"move-right"
-
-[node name="Pivot" type="Marker2D" parent="Entities/Player" unique_id=1324704426]
-rotation = -1.5708
-
-[node name="CameraOffset" type="Marker2D" parent="Entities/Player/Pivot" unique_id=352577599]
-position = Vector2(3, -0.999989)
-
-[node name="Camera2D" type="Camera2D" parent="Entities/Player/Pivot/CameraOffset" unique_id=41654965]
-position = Vector2(64, 0)
-limit_smoothed = true
-drag_bottom_margin = 0.4
-script = ExtResource("26")
-
-[node name="Cargo" parent="Entities/Player" unique_id=1668342817 instance=ExtResource("22")]
-
-[node name="HurtBox" parent="Entities/Player" unique_id=1990548621 instance=ExtResource("23")]
-
-[node name="MiningTool_Player" parent="Entities/Player" unique_id=1487777749 instance=ExtResource("1")]
-scale = Vector2(2.6780062, 2.6585467)
-
-[node name="Cannon" parent="Entities/Player" unique_id=1042362091 instance=ExtResource("29")]
-
-[node name="MissileLauncher" parent="Entities/Player" unique_id=345462335 instance=ExtResource("2")]
-
-[node name="Health" parent="Entities/Player" unique_id=1732575761 instance=ExtResource("32")]
-max_hp = 500
-
 [node name="Asteriods" type="Node" parent="Entities" unique_id=1259489587]
 
 [node name="AsteriodArea" parent="Entities/Asteriods" unique_id=110246684 instance=ExtResource("10")]
@@ -304,8 +162,6 @@ scale = Vector2(7.78342, 7.78342)
 script = ExtResource("27")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=939507795]
-
-[node name="PlayerHUD" parent="UI" unique_id=39345902 instance=ExtResource("4")]
 
 [node name="Shop" type="CanvasLayer" parent="UI" unique_id=1163111634]
 visible = false
@@ -422,6 +278,10 @@ visible = false
 
 [node name="GameOverLayer" parent="." unique_id=756135265 instance=ExtResource("30")]
 visible = false
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=390185910]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_jwfff")
 
 [connection signal="pressed" from="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot/Panel/Container/Manufacture" to="UI/Shop" method="_on_Manufacture_pressed" flags=3 binds= ["MINER"]]
 [connection signal="pressed" from="UI/Shop/Panel2/VBoxContainer/GridContainer/ItemSlot2/Panel/Container/Manufacture" to="UI/Shop" method="_on_Manufacture_pressed" flags=3 binds= ["ATTACK"]]

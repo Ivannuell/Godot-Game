@@ -1,9 +1,10 @@
 extends CanvasLayer
 
-@export var camera_path: NodePath
+#@export var camera_path: NodePath
 
-@onready var camera = get_node(camera_path)
+#@onready var camera = get_node(camera_path)
 @onready var shader_mat = $ColorRect.material
+@onready var camera = $"../Pivot/CameraOffset/Camera2D"
 
 
 func _process(delta):
