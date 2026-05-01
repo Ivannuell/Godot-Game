@@ -34,6 +34,7 @@ func _ready():
 	hits = ceil(hits * multiplier)
 	$Sprite2D.set_scale(Vector2(multiplier, multiplier))
 	$CollisionShape2D.set_scale(Vector2(multiplier, multiplier))
+	$NavigationObstacle2D.radius *= multiplier
 	max_miners = max(1, int(multiplier))
 	
 	$Sprite2D.frame = randf_range(0, $Sprite2D.hframes)
