@@ -20,3 +20,11 @@ signal cargo_collected(cargo, target)
 signal start_mining(mining_tool)
 
 signal minerals_changed(team, value)
+
+#--- Typing attack Signals ---------
+signal activate_enemy(enemy)
+signal deactivate_enemy(enemy)
+
+signal enter_enemy(enemy)
+signal exit_enemy(enemy)
+#---

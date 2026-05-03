@@ -8,20 +8,16 @@
 [ext_resource type="PackedScene" path="res://Scenes/Game/Systems/WeaponSystem.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Asteriod/AsteriodArea.tscn" id="10"]
 [ext_resource type="Script" uid="uid://0sbotjsy5u82" path="res://Scenes/Game/UI/Shop.gd" id="11"]
+[ext_resource type="Script" uid="uid://m2vitbp30nu5" path="res://Scenes/Game/Systems/TypingAttackSystem.gd" id="11_3ktpp"]
 [ext_resource type="PackedScene" uid="uid://bir1dr8t2wxff" path="res://Scenes/Game/Entities/Spaceships/Miner/Miner.tscn" id="12"]
-[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Weapons/AutoGun/AutoGun.tscn" id="13"]
 [ext_resource type="Texture2D" uid="uid://cn7p3cqi847hp" path="res://Scenes/Game/Entities/Spaceships/Miner/CrabShip.png" id="14"]
 [ext_resource type="Texture2D" uid="uid://7mmr57ns3j4w" path="res://Scenes/Game/Entities/Spaceships/Attacker/fighter1.png" id="15"]
 [ext_resource type="Theme" uid="uid://ci2odcci5y406" path="res://Themes/default.tres" id="16"]
 [ext_resource type="Script" uid="uid://csb4y8ysxvckr" path="res://Scenes/Game/Layers/Game/Game.gd" id="17"]
 [ext_resource type="Script" uid="uid://lh1v2jykjm32" path="res://Scenes/Game/GameStateMachine.gd" id="18"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Layers/Paused/PauseLayer.tscn" id="19"]
-[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Turrets/Basic/BasicTurret.tscn" id="20"]
-[ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Base/MotherShip.tscn" id="21"]
 [ext_resource type="Script" uid="uid://b2l500ojcl1xp" path="res://Scenes/Game/Systems/EnemyStategy.gd" id="27"]
-[ext_resource type="PackedScene" uid="uid://c56aiuspahc8" path="res://Scenes/Game/Entities/Spaceships/Attacker/Attacker.tscn" id="28"]
 [ext_resource type="PackedScene" uid="uid://c1x5ul51imb28" path="res://Scenes/Game/Layers/GameOver/GameOverLayer.tscn" id="30"]
-[ext_resource type="Texture2D" uid="uid://dqwn6uxrf2cal" path="res://Scenes/Game/Entities/Base/MotherShip.png" id="31"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jwfff"]
 vertices = PackedVector2Array(7466.2188, 5565.047, -1143.0469, 5612.9375, -1178.9375, -1477.0313, 7629.758, -1506.9609)
@@ -32,119 +28,85 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1189, -1487, -1153, 56
 script = ExtResource("17")
 
 [node name="Player" parent="." unique_id=870247989 instance=ExtResource("2_jwfff")]
-position = Vector2(-549, 1964)
+position = Vector2(1321, 1302)
 
 [node name="Entities" type="Node" parent="." unique_id=2082881190]
-
-[node name="Allies" type="Node" parent="Entities" unique_id=1734246007]
-
-[node name="Base" parent="Entities/Allies" unique_id=1790012984 instance=ExtResource("21")]
-position = Vector2(120, 1968)
-scale = Vector2(3, 3)
-base = ExtResource("31")
-
-[node name="Miner" parent="Entities/Allies" unique_id=1396190506 instance=ExtResource("12")]
-position = Vector2(536, 1792)
-
-[node name="Miner2" parent="Entities/Allies" unique_id=2035364330 instance=ExtResource("12")]
-position = Vector2(544, 2128)
-
-[node name="Enemy" parent="Entities/Allies" unique_id=1240856644 instance=ExtResource("28")]
-self_modulate = Color(0.615686, 0.105882, 0.105882, 1)
-position = Vector2(432, 1600)
-
-[node name="AutoGun" parent="Entities/Allies/Enemy" unique_id=1354794924 instance=ExtResource("13")]
 
 [node name="Enemies" type="Node" parent="Entities" unique_id=1912236085]
 
 [node name="Miner" parent="Entities/Enemies" unique_id=691131486 instance=ExtResource("12")]
 modulate = Color(0.952941, 0.54902, 0.54902, 1)
-position = Vector2(3096, 1952)
+position = Vector2(1598, 1999)
 rotation = 6.28
 team = 1
 
 [node name="Miner2" parent="Entities/Enemies" unique_id=1639872249 instance=ExtResource("12")]
-position = Vector2(3144, 1952)
+position = Vector2(1646, 1999)
 rotation = 6.28
 team = 1
 
 [node name="Miner3" parent="Entities/Enemies" unique_id=660476621 instance=ExtResource("12")]
-position = Vector2(3192, 1952)
+position = Vector2(1694, 1999)
 rotation = 6.28
 team = 1
 
 [node name="Miner4" parent="Entities/Enemies" unique_id=508093437 instance=ExtResource("12")]
-position = Vector2(3240, 1952)
+position = Vector2(1760.0001, 1667.0001)
 rotation = 6.28
 team = 1
 
 [node name="Base" parent="Entities/Enemies" unique_id=1935079176 instance=ExtResource("3")]
-position = Vector2(3343, 1936)
-team = 1
-
-[node name="BasicTurret" parent="Entities/Enemies" unique_id=994015872 instance=ExtResource("20")]
-position = Vector2(3248, 1704)
-team = 1
-
-[node name="BasicTurret3" parent="Entities/Enemies" unique_id=1106630290 instance=ExtResource("20")]
-position = Vector2(3256, 2192)
-team = 1
-
-[node name="BasicTurret2" parent="Entities/Enemies" unique_id=1261882332 instance=ExtResource("20")]
-position = Vector2(3248, 2128)
-team = 1
-
-[node name="BasicTurret4" parent="Entities/Enemies" unique_id=1264881345 instance=ExtResource("20")]
-position = Vector2(3248, 1632)
-team = 1
-
-[node name="BasicTurret5" parent="Entities/Enemies" unique_id=1833193155 instance=ExtResource("20")]
-position = Vector2(3328, 1672)
-team = 1
-
-[node name="BasicTurret6" parent="Entities/Enemies" unique_id=58702785 instance=ExtResource("20")]
-position = Vector2(3351, 2158)
+position = Vector2(2088, 1973)
 team = 1
 
 [node name="Asteriods" type="Node" parent="Entities" unique_id=1259489587]
 
 [node name="AsteriodArea" parent="Entities/Asteriods" unique_id=110246684 instance=ExtResource("10")]
-position = Vector2(1256, 856)
+position = Vector2(1263, 1987.9999)
 scale = Vector2(1.73749, 1.73749)
 
 [node name="AsteriodArea2" parent="Entities/Asteriods" unique_id=2005386722 instance=ExtResource("10")]
+visible = false
 position = Vector2(896, 776)
 scale = Vector2(5.04599, 5.04599)
 
 [node name="AsteriodArea7" parent="Entities/Asteriods" unique_id=422500464 instance=ExtResource("10")]
+visible = false
 position = Vector2(3320, 824)
 scale = Vector2(5.04599, 5.04599)
 
 [node name="AsteriodArea10" parent="Entities/Asteriods" unique_id=1062840328 instance=ExtResource("10")]
+visible = false
 position = Vector2(4288, 2496)
 scale = Vector2(5.04599, 5.04599)
 
 [node name="AsteriodArea3" parent="Entities/Asteriods" unique_id=564819351 instance=ExtResource("10")]
+visible = false
 position = Vector2(2072, 904)
 scale = Vector2(7.78342, 7.78342)
 
 [node name="AsteriodArea8" parent="Entities/Asteriods" unique_id=1909328224 instance=ExtResource("10")]
+visible = false
 position = Vector2(4432, 1304)
 scale = Vector2(7.78342, 7.78342)
 
 [node name="AsteriodArea9" parent="Entities/Asteriods" unique_id=491745245 instance=ExtResource("10")]
+visible = false
 position = Vector2(3648, 3528)
 scale = Vector2(7.78342, 7.78342)
 
 [node name="AsteriodArea4" parent="Entities/Asteriods" unique_id=159966396 instance=ExtResource("10")]
+visible = false
 position = Vector2(2296, 2616)
 scale = Vector2(1.73749, 1.73749)
 
 [node name="AsteriodArea5" parent="Entities/Asteriods" unique_id=221604937 instance=ExtResource("10")]
+visible = false
 position = Vector2(2712, 2680)
 scale = Vector2(5.04599, 5.04599)
 
 [node name="AsteriodArea6" parent="Entities/Asteriods" unique_id=623830372 instance=ExtResource("10")]
+visible = false
 position = Vector2(1464, 2568)
 scale = Vector2(7.78342, 7.78342)
 
@@ -160,6 +122,9 @@ scale = Vector2(7.78342, 7.78342)
 
 [node name="EnemyAI" type="Node" parent="Systems" unique_id=185070805]
 script = ExtResource("27")
+
+[node name="TypingAttackSystem" type="Node" parent="Systems" unique_id=204452915]
+script = ExtResource("11_3ktpp")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=939507795]
 

@@ -178,6 +178,8 @@ animations = [{
 
 [sub_resource type="LabelSettings" id="LabelSettings_rsyjw"]
 font_size = 32
+outline_size = 5
+outline_color = Color(0, 0.98039216, 0, 1)
 
 [node name="Miner" type="CharacterBody2D" unique_id=853180977]
 z_index = 51
@@ -245,10 +247,19 @@ scale = Vector2(2.6577773, 2.6577773)
 [node name="UIanchor" type="Node2D" parent="." unique_id=1463305110]
 
 [node name="Label" type="Label" parent="UIanchor" unique_id=1597362144]
-offset_left = -44.075714
-offset_top = -58.57153
-offset_right = 44.828667
-offset_bottom = -35.57153
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.285294
+offset_top = -82.85736
+offset_right = 44.619087
+offset_bottom = -37.85736
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "word"
 label_settings = SubResource("LabelSettings_rsyjw")
 vertical_alignment = 1
 

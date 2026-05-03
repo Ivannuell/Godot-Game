@@ -24,8 +24,6 @@ enum Team {
 #var velocity := Vector2.ZERO
 @onready var engine_particles = $ThrusterParticles
 
-var enemies_in_range :Array = []
-
 var target_direction := Vector2.ZERO
 
 var acceleration := 300.0
@@ -67,14 +65,6 @@ func _physics_process(delta):
 	velocity += current_direction * acceleration * delta
 	rotation = lerp_angle(rotation, velocity.angle() + PI/2, 0.5)
 	move_and_slide()
-
-func add_enemy_in_range(enemy):
-	if enemy.team != team:
-		enemies_in_range.append(enemy)
-	
-func remove_enemy_in_range(enemy):
-	if enemies_in_range.has(enemy):
-		enemies_in_range.erase(enemy)
 
 
 #--------------- DEPRECATED methods ------------------

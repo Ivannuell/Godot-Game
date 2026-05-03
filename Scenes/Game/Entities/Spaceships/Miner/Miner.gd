@@ -4,10 +4,8 @@ class_name Miner
 var target = null
 @onready var Cargo = $Cargo
 @onready var Base = $"../Base"
-
+@onready var ui = $UIanchor
 @onready var mining_tool = get_node_or_null("MiningTool")
-
-var word = "asteriod"
 
 enum State {
 	SEARCHING,
@@ -33,9 +31,12 @@ func _ready():
 	
 	if team == Team.ENEMY:
 		set_modulate(Color(0.95, 0.55, 0.55))
-		$UIanchor/Label.text = word
+		$UIanchor/Label.text = str(index) + ". " + word
+		ui.visible = false
+		
 		add_to_group("enemy_miners")
 	elif team == Team.PLAYER:
+		ui.visible = false
 		add_to_group("player_miners")
 
 func _physics_process(delta):
@@ -54,6 +55,25 @@ func _physics_process(delta):
 
 		State.RETURNING:
 			update_movement(delta, Base)
+
+
+func show_word():
+	$UIanchor.visible = true
+
+func hide_word():
+	$UIanchor.visible = false
+
+func update_index():
+	$UIanchor/Label.text = str(index) + ". " + word
+
+func activate():
+	$UIanchor/Label.outline_color = Color.GREEN
+
+
+
+
+
+
 
 
 # =========================

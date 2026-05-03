@@ -16,3 +16,28 @@ var SPEED = 100
 var dodge_direction := 0  # -1 = left, 0 = none, 1 = right
 var dodge_timer := 0.0
 var dodge_duration := 1  # How long to commit to a dodge direction
+
+var active = false
+var index = 0
+var word = 'asteriod'
+
+
+func activate():
+	push_warning("Method not implemented, -", self.name)
+	
+func deactivate():
+	push_warning("Method not implemented, -", self.name)
+	
+func assign_index(i):
+	self.index = i
+	update_index()
+	
+func update_index():
+	push_warning("Method not implemented, -", self.name)
+	
+func show_word():
+	push_warning("Method not implemented, -", self.name)
+
+func hide_word():
+	push_warning("Method not implemented, -", self.name)
+	
