@@ -28,11 +28,7 @@ func activate():
 func deactivate():
 	push_warning("Method not implemented, -", self.name)
 	
-func assign_index(i):
-	self.index = i
-	update_index()
-	
-func update_index():
+func update_index(i):
 	push_warning("Method not implemented, -", self.name)
 	
 func show_word():

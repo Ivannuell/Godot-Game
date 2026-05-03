@@ -30,11 +30,11 @@ func _ready():
 	add_to_group(str(team))
 	
 	if team == Team.ENEMY:
-		set_modulate(Color(0.95, 0.55, 0.55))
+		$Sprite2D.set_modulate(Color(0.95, 0.55, 0.55))
 		$UIanchor/Label.text = str(index) + ". " + word
 		ui.visible = false
-		
 		add_to_group("enemy_miners")
+		
 	elif team == Team.PLAYER:
 		ui.visible = false
 		add_to_group("player_miners")
@@ -63,18 +63,12 @@ func show_word():
 func hide_word():
 	$UIanchor.visible = false
 
-func update_index():
+func update_index(i):
+	index = i
 	$UIanchor/Label.text = str(index) + ". " + word
 
 func activate():
-	$UIanchor/Label.outline_color = Color.GREEN
-
-
-
-
-
-
-
+	$UIanchor/Label.set_cell_border_color(Color.GREEN)
 
 # =========================
 # MOVEMENT

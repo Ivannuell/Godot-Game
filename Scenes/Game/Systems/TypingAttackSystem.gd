@@ -14,15 +14,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func on_enemy_enter(enemy: Spaceship):
 	enemy_inRange.append(enemy)
+	enemy.activate()
 	inititalize_enemy_list()
 
 
 func on_enemy_exit(enemy: Spaceship):
 	enemy_inRange.erase(enemy)
-	on_deactivate_enemy(enemy)
+	enemy.deactivate()
 		
 	inititalize_enemy_list()
 
@@ -30,7 +30,7 @@ func on_enemy_exit(enemy: Spaceship):
 func inititalize_enemy_list():
 	var index = 1
 	for i in enemy_inRange:
-		i.assign_index(index)
+		i.update_index(index)
 		index += 1
 	
 	index = 0
