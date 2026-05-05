@@ -16,7 +16,6 @@ func _process(delta: float) -> void:
 
 func on_enemy_enter(enemy: Spaceship):
 	enemy_inRange.append(enemy)
-	enemy.activate()
 	inititalize_enemy_list()
 
 
@@ -31,6 +30,8 @@ func inititalize_enemy_list():
 	var index = 1
 	for i in enemy_inRange:
 		i.update_index(index)
+		if index == 1:
+			i.activate()
 		index += 1
 	
 	index = 0

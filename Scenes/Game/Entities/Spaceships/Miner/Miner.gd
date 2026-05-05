@@ -7,6 +7,9 @@ var target = null
 @onready var ui = $UIanchor
 @onready var mining_tool = get_node_or_null("MiningTool")
 
+@onready var word_label = $UIanchor/Control/word
+@onready var word_highlight = $"UIanchor/Control/background-highlight"
+
 enum State {
 	SEARCHING,
 	MOVING,
@@ -31,7 +34,8 @@ func _ready():
 	
 	if team == Team.ENEMY:
 		$Sprite2D.set_modulate(Color(0.95, 0.55, 0.55))
-		$UIanchor/Label.text = str(index) + ". " + word
+		word_label.text = str(index) + ". " + word
+		word_highlight.visible = false
 		ui.visible = false
 		add_to_group("enemy_miners")
 		
@@ -65,10 +69,10 @@ func hide_word():
 
 func update_index(i):
 	index = i
-	$UIanchor/Label.text = str(index) + ". " + word
+	word_label.text = str(index) + ". " + word
 
 func activate():
-	$UIanchor/Label.set_cell_border_color(Color.GREEN)
+	word_highlight.visible = true
 
 # =========================
 # MOVEMENT
