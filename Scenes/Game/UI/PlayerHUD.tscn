@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://7mgl7wu05qok" path="res://Scenes/Game/UI/PlayerHUD.gd" id="1"]
 [ext_resource type="Theme" uid="uid://ci2odcci5y406" path="res://Themes/default.tres" id="2"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_pql0n"]
+font_size = 32
+
 [node name="PlayerHUD" type="CanvasLayer" unique_id=2135756343]
 script = ExtResource("1")
 
@@ -26,3 +29,22 @@ offset_right = 246.0
 offset_bottom = -14.0
 grow_vertical = 0
 rounded = true
+
+[node name="Label" type="Label" parent="." unique_id=1183078455]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = 121.0
+offset_right = 158.0
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Asteriod"
+label_settings = SubResource("LabelSettings_pql0n")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

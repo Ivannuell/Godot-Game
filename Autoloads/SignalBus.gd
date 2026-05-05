@@ -27,4 +27,5 @@ signal deactivate_enemy(enemy)
 
 signal enter_enemy(enemy)
 signal exit_enemy(enemy)
+signal no_enemy()
 #---

@@ -19,7 +19,8 @@ var dodge_duration := 1  # How long to commit to a dodge direction
 
 var active = false
 var index = 0
-var word = 'asteriod'
+var word = ['asteriod', 'space', 'minerals'].pick_random()
+
 
 
 func activate():
