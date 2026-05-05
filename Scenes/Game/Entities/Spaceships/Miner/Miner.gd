@@ -73,6 +73,9 @@ func update_index(i):
 
 func activate():
 	word_highlight.visible = true
+	
+func deactivate():
+	word_highlight.visible = false
 
 # =========================
 # MOVEMENT
