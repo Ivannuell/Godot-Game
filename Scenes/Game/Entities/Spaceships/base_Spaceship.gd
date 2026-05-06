@@ -19,12 +19,12 @@ var dodge_duration := 1  # How long to commit to a dodge direction
 
 var active = false
 var index = 0
-var word = ['asteriod', 'space', 'minerals'].pick_random()
+var word = ['asteriod', 'space', 'minerals', 'spaceship', 'galaxie', 'mine', 'rock', 'fuel'].pick_random()
 
 var current_letter_index = 0
 
 func check_input(char):
-	if current_letter_index >= word.length():
+	if is_word_complete():
 		return
 		
 	if char == word[current_letter_index]:
@@ -35,6 +35,9 @@ func check_input(char):
 		
 func is_word_complete():
 	return current_letter_index >= word.length()
+	
+func on_word_completed():
+	die()
 
 func die():
 	push_warning("Method not implemented, -", self.name)

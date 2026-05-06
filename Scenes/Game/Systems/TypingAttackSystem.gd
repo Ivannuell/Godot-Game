@@ -12,46 +12,35 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if not enemy_inRange:
-		SignalBus.emit_signal("no_enemy")
-		active_Enemy = null
+	pass
 	
 func _input(event: InputEvent) -> void:
-	
-	
 	if event is InputEventKey and event.pressed and not event.echo:
 		var input = char(event.unicode)
 		
 		if input.is_valid_int():
-			for i in enemy_inRange:
-				if i.index == int(input):
-					SignalBus.emit_signal("activate_enemy", i)
-					active_Enemy = i
+			var target_index = int(input)
+			if target_index >= 1 or target_index <= 9:
+				for i in enemy_inRange:
+					if i.index == target_index:
+						SignalBus.emit_signal("activate_enemy", i)
+						active_Enemy = i
 					
 		if not active_Enemy:
 			return
 			
 		if active_Enemy.check_input(input):
-			print('correct - ', input )
 			if active_Enemy.is_word_complete():
-				active_Enemy.die()
-				active_Enemy = null
-				inititalize_enemy_list()
+				active_Enemy.on_word_completed()
 
 func inititalize_enemy_list():
 	var index = 1
 	for i in enemy_inRange:
 		i.update_index(index)
-		if index == 1 and not active_Enemy:
-			SignalBus.emit_signal("activate_enemy", i)
 		index += 1
-	
-	index = 0
-
-
-
-
-#FIXME There is inconsistency in deactivating enemies when the first enemy leaves the range
+		
+	if active_Enemy == null and enemy_inRange.size() > 0:
+		SignalBus.emit_signal("activate_enemy", enemy_inRange[0])
 
 func on_enemy_enter(enemy: Spaceship):
 	enemy_inRange.append(enemy)
@@ -60,12 +49,16 @@ func on_enemy_enter(enemy: Spaceship):
 func on_enemy_exit(enemy: Spaceship):
 	enemy_inRange.erase(enemy)
 	enemy.deactivate()
-		
+
+	if enemy_inRange.is_empty():
+		SignalBus.emit_signal("no_enemy")
+		active_Enemy = null
+
 	inititalize_enemy_list()
 
 func on_activate_enemy(enemy: Spaceship):
 	for i in enemy_inRange:
-		on_deactivate_enemy(i)
+		i.deactivate()
 	
 	enemy.activate()
 	active_Enemy = enemy
