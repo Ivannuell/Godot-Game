@@ -31,5 +31,5 @@ func on_enemy_active(enemy):
 	update_word = true
 	
 func on_no_active():
-	word_label.text = ""
+	active_word = ""
 	

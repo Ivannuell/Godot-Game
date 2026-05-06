@@ -14,7 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func _input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:	
 	if event is InputEventKey and event.pressed and not event.echo:
 		var input = char(event.unicode)
 		
@@ -40,6 +40,11 @@ func _input(event: InputEvent) -> void:
 				call_deferred("inititalize_enemy_list")
 
 func inititalize_enemy_list():
+	if enemy_inRange.is_empty():
+		SignalBus.emit_signal("no_enemy")
+		active_Enemy = null
+		return
+	
 	var index = 1
 	for i in enemy_inRange:
 		i.update_index(index)
