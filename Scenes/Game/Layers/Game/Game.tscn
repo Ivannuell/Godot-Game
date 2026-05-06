@@ -34,12 +34,6 @@ position = Vector2(1321, 1302)
 
 [node name="Enemies" type="Node" parent="Entities" unique_id=1912236085]
 
-[node name="Miner" parent="Entities/Enemies" unique_id=691131486 instance=ExtResource("12")]
-modulate = Color(0.952941, 0.54902, 0.54902, 1)
-position = Vector2(1598, 1999)
-rotation = 6.28
-team = 1
-
 [node name="Miner2" parent="Entities/Enemies" unique_id=1639872249 instance=ExtResource("12")]
 position = Vector2(1646, 1999)
 rotation = 6.28
@@ -56,7 +50,7 @@ rotation = 6.28
 team = 1
 
 [node name="Base" parent="Entities/Enemies" unique_id=1935079176 instance=ExtResource("3")]
-position = Vector2(2088, 1973)
+position = Vector2(2001, 1994)
 team = 1
 
 [node name="Asteriods" type="Node" parent="Entities" unique_id=1259489587]
