@@ -252,7 +252,7 @@ func receive_damage(damage_data):
 
 func die():
 	SignalBus.emit_signal("cargo_spawned", $Cargo)
-	queue_free()
+	SignalBus.emit_signal("enemy_died", self)
 
 
 func _on_thrusters_animation_finished() -> void:

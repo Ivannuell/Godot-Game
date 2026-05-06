@@ -9,6 +9,7 @@ func _ready() -> void:
 	SignalBus.connect("deactivate_enemy", on_deactivate_enemy)
 	SignalBus.connect("enter_enemy", on_enemy_enter)
 	SignalBus.connect("exit_enemy", on_enemy_exit)
+	SignalBus.connect("enemy_died", on_enemy_died)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -16,10 +17,11 @@ func _process(delta: float) -> void:
 	
 func _input(event: InputEvent) -> void:	
 	if event is InputEventKey and event.pressed and not event.echo:
-		var input = char(event.unicode)
 		
 		if event.unicode == 0:
 			return
+			
+		var input = char(event.unicode)
 		
 		if input.is_valid_int():
 			var target_index = int(input)
@@ -36,8 +38,7 @@ func _input(event: InputEvent) -> void:
 		if active_Enemy.check_input(input):
 			if active_Enemy.is_word_complete():
 				active_Enemy.on_word_completed()
-				active_Enemy = null
-				call_deferred("inititalize_enemy_list")
+				SignalBus.emit_signal("exit_enemy", active_Enemy)
 
 func inititalize_enemy_list():
 	if enemy_inRange.is_empty():
@@ -53,19 +54,26 @@ func inititalize_enemy_list():
 	if active_Enemy == null and enemy_inRange.size() > 0:
 		SignalBus.emit_signal("activate_enemy", enemy_inRange[0])
 		
-	
+
+
+func on_enemy_died(enemy):
+	enemy.deactivate()
+	enemy_inRange.erase(enemy)
+	enemy.queue_free()
+
 
 func on_enemy_enter(enemy: Spaceship):
 	enemy_inRange.append(enemy)
 	inititalize_enemy_list()
 
 func on_enemy_exit(enemy: Spaceship):
-	enemy_inRange.erase(enemy)
 	enemy.deactivate()
+	enemy_inRange.erase(enemy)
 
-	if enemy_inRange.is_empty():
-		SignalBus.emit_signal("no_enemy")
+	if enemy_inRange.size() <= 0:
 		active_Enemy = null
+		SignalBus.emit_signal("no_enemy")
+		inititalize_enemy_list()
 	else:
 		active_Enemy = null
 		inititalize_enemy_list()

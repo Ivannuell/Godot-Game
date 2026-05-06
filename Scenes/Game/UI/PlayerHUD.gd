@@ -15,7 +15,7 @@ func _ready():
 	player_booster.max_value = PlayerStats.max_boost_fuel
 	player_booster.value = PlayerStats.max_boost_fuel
 	
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	if update_word:
 		word_label.text = active_word
 		update_word = false
@@ -32,4 +32,5 @@ func on_enemy_active(enemy):
 	
 func on_no_active():
 	active_word = ""
+	update_word = true
 	
