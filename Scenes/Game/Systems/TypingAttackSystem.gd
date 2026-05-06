@@ -17,14 +17,26 @@ func _process(delta: float) -> void:
 		active_Enemy = null
 	
 func _input(event: InputEvent) -> void:
+	
+	
 	if event is InputEventKey and event.pressed and not event.echo:
-		var selected_index = char(event.unicode)
+		var input = char(event.unicode)
 		
-		if selected_index.is_valid_int():
+		if input.is_valid_int():
 			for i in enemy_inRange:
-				if i.index == int(selected_index):
+				if i.index == int(input):
 					SignalBus.emit_signal("activate_enemy", i)
 					active_Enemy = i
+					
+		if not active_Enemy:
+			return
+			
+		if active_Enemy.check_input(input):
+			print('correct - ', input )
+			if active_Enemy.is_word_complete():
+				active_Enemy.die()
+				active_Enemy = null
+				inititalize_enemy_list()
 
 func inititalize_enemy_list():
 	var index = 1
@@ -56,6 +68,7 @@ func on_activate_enemy(enemy: Spaceship):
 		on_deactivate_enemy(i)
 	
 	enemy.activate()
+	active_Enemy = enemy
 
 func on_deactivate_enemy(enemy: Spaceship):
 	enemy.deactivate()

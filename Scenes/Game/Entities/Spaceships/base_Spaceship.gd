@@ -21,7 +21,23 @@ var active = false
 var index = 0
 var word = ['asteriod', 'space', 'minerals'].pick_random()
 
+var current_letter_index = 0
 
+func check_input(char):
+	if current_letter_index >= word.length():
+		return
+		
+	if char == word[current_letter_index]:
+		current_letter_index += 1
+		return true
+	else:
+		return false
+		
+func is_word_complete():
+	return current_letter_index >= word.length()
+
+func die():
+	push_warning("Method not implemented, -", self.name)
 
 func activate():
 	push_warning("Method not implemented, -", self.name)
@@ -37,4 +53,6 @@ func show_word():
 
 func hide_word():
 	push_warning("Method not implemented, -", self.name)
+	
+
 	

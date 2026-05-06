@@ -248,6 +248,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="background-highlight" type="ColorRect" parent="UIanchor/Control" unique_id=1985116210]
+visible = false
 layout_mode = 0
 offset_left = -57.39454
 offset_top = -60.8954
@@ -263,6 +264,9 @@ offset_right = 41.417656
 offset_bottom = -27.85736
 size_flags_horizontal = 4
 text = "word"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 

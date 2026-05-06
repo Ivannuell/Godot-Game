@@ -72,10 +72,14 @@ func update_index(i):
 	word_label.text = str(index) + ". " + word
 
 func activate():
-	word_highlight.visible = true
+	#word_highlight.visible = true
+	word_label.add_theme_color_override("default_color", Color.GREEN)
 	
 func deactivate():
-	word_highlight.visible = false
+	#word_highlight.visible = false
+	word_label.add_theme_color_override("default_color", Color.WHITE)
+	
+
 
 # =========================
 # MOVEMENT
