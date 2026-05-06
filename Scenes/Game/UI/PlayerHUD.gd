@@ -6,6 +6,8 @@ extends CanvasLayer
 var active_word = ""
 var update_word = false
 
+#TODO: make the text reactive to the actual progress of the word
+
 func _ready():
 	GameData.connect("player_mineral_changed", Callable(self, "on_minerals_changed"))
 	PlayerStats.connect("booster_fuel_changed", Callable(self, "on_booster_fuel_changed"))
