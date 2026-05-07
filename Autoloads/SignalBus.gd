@@ -21,7 +21,7 @@ signal start_mining(mining_tool)
 
 signal minerals_changed(team, value)
 
-#--- Typing attack Signals ---------
+#region Typing attack Signals
 signal activate_enemy(enemy)
 signal deactivate_enemy(enemy)
 
@@ -30,4 +30,5 @@ signal exit_enemy(enemy)
 signal no_enemy()
 
 signal enemy_died(enemy)
-#---
+signal enemy_word_update(current_index)
+#endregion

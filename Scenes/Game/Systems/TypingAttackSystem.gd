@@ -36,9 +36,12 @@ func _input(event: InputEvent) -> void:
 			return
 			
 		if active_Enemy.check_input(input):
+			SignalBus.emit_signal("enemy_word_update", active_Enemy.current_letter_index)
+			
 			if active_Enemy.is_word_complete():
 				active_Enemy.on_word_completed()
 				SignalBus.emit_signal("exit_enemy", active_Enemy)
+				
 
 func inititalize_enemy_list():
 	if enemy_inRange.is_empty():

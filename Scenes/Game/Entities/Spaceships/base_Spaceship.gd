@@ -39,9 +39,12 @@ func is_word_complete():
 func on_word_completed():
 	die()
 
+
+#region Method Overrides
+
 func die():
 	push_warning("Method not implemented, -", self.name)
-
+#
 func activate():
 	push_warning("Method not implemented, -", self.name)
 	
@@ -56,6 +59,8 @@ func show_word():
 
 func hide_word():
 	push_warning("Method not implemented, -", self.name)
+	
+#endregion
 	
 
 	
