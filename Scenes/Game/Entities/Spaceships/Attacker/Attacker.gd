@@ -2,10 +2,12 @@ extends Spaceship
 class_name Attacker
 
 @export var moving := true
-
+@onready var word_label = $UIanchor/Control/word
 var target: Node = null
 var to_target := Vector2.ZERO
 var target_rotation := 0.0
+
+
 
 var rotation_speed := 1.5
 
@@ -65,6 +67,23 @@ func _physics_process(delta):
 			change_state(State.MOVING)
 		
 
+#region TypeAttack methods
+func show_word():
+	$UIanchor.visible = true
+
+func hide_word():
+	$UIanchor.visible = false
+
+func update_index(i):
+	index = i
+	word_label.text = str(index) + ". " + word
+
+func activate():
+	word_label.add_theme_color_override("default_color", Color.GREEN)
+	
+func deactivate():
+	word_label.add_theme_color_override("default_color", Color.WHITE)
+#endregion
 
 
 

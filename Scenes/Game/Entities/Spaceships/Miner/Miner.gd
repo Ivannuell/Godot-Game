@@ -61,6 +61,8 @@ func _physics_process(delta):
 			update_movement(delta, Base)
 
 
+#region TypeAttack methods
+
 func show_word():
 	$UIanchor.visible = true
 
@@ -72,19 +74,16 @@ func update_index(i):
 	word_label.text = str(index) + ". " + word
 
 func activate():
-	#word_highlight.visible = true
 	word_label.add_theme_color_override("default_color", Color.GREEN)
 	
 func deactivate():
-	#word_highlight.visible = false
 	word_label.add_theme_color_override("default_color", Color.WHITE)
+	
+#endregion
 	
 
 
-# =========================
-# MOVEMENT
-# =========================
-
+#region Movement
 func update_movement(delta, move_target):
 	if move_target == null or not is_instance_valid(move_target):
 		change_state(State.SEARCHING)
@@ -122,12 +121,9 @@ func update_movement(delta, move_target):
 	
 	
 	move_and_slide()
+#endregion
 
-
-# =========================
-# OBSTACLE AVOIDANCE
-# =========================
-
+#region Avoidance Logic
 func get_avoidance_vector():
 	var avoid = Vector2.ZERO
 
@@ -165,12 +161,9 @@ func get_avoidance_vector():
 		dodge_timer = dodge_duration
 			
 	return avoid
+#endregion
 
-
-# =========================
-# STATE LOGIC
-# =========================
-
+#region state-machine logic
 func change_state(new_state):
 	if state == new_state:
 		return
@@ -200,6 +193,7 @@ func change_state(new_state):
 
 	elif state == State.SEARCHING:
 		$Thrusters.play("idle")
+#endregion
 
 func find_target():
 	if Cargo.current >= Cargo.capacity:
