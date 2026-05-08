@@ -59,51 +59,6 @@ team = 1
 position = Vector2(1263, 1987.9999)
 scale = Vector2(1.73749, 1.73749)
 
-[node name="AsteriodArea2" parent="Entities/Asteriods" unique_id=2005386722 instance=ExtResource("10")]
-visible = false
-position = Vector2(896, 776)
-scale = Vector2(5.04599, 5.04599)
-
-[node name="AsteriodArea7" parent="Entities/Asteriods" unique_id=422500464 instance=ExtResource("10")]
-visible = false
-position = Vector2(3320, 824)
-scale = Vector2(5.04599, 5.04599)
-
-[node name="AsteriodArea10" parent="Entities/Asteriods" unique_id=1062840328 instance=ExtResource("10")]
-visible = false
-position = Vector2(4288, 2496)
-scale = Vector2(5.04599, 5.04599)
-
-[node name="AsteriodArea3" parent="Entities/Asteriods" unique_id=564819351 instance=ExtResource("10")]
-visible = false
-position = Vector2(2072, 904)
-scale = Vector2(7.78342, 7.78342)
-
-[node name="AsteriodArea8" parent="Entities/Asteriods" unique_id=1909328224 instance=ExtResource("10")]
-visible = false
-position = Vector2(4432, 1304)
-scale = Vector2(7.78342, 7.78342)
-
-[node name="AsteriodArea9" parent="Entities/Asteriods" unique_id=491745245 instance=ExtResource("10")]
-visible = false
-position = Vector2(3648, 3528)
-scale = Vector2(7.78342, 7.78342)
-
-[node name="AsteriodArea4" parent="Entities/Asteriods" unique_id=159966396 instance=ExtResource("10")]
-visible = false
-position = Vector2(2296, 2616)
-scale = Vector2(1.73749, 1.73749)
-
-[node name="AsteriodArea5" parent="Entities/Asteriods" unique_id=221604937 instance=ExtResource("10")]
-visible = false
-position = Vector2(2712, 2680)
-scale = Vector2(5.04599, 5.04599)
-
-[node name="AsteriodArea6" parent="Entities/Asteriods" unique_id=623830372 instance=ExtResource("10")]
-visible = false
-position = Vector2(1464, 2568)
-scale = Vector2(7.78342, 7.78342)
-
 [node name="Systems" type="Node" parent="." unique_id=1931150542]
 
 [node name="DeathSystem" parent="Systems" unique_id=796437139 instance=ExtResource("7")]

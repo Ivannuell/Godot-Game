@@ -4,9 +4,9 @@ class_name Miner
 var target = null
 @onready var Cargo = $Cargo
 @onready var Base = $"../Base"
-@onready var ui = $UIanchor
 @onready var mining_tool = get_node_or_null("MiningTool")
 
+@onready var ui = $UIanchor 
 @onready var word_label = $UIanchor/Control/word
 @onready var word_highlight = $"UIanchor/Control/background-highlight"
 
