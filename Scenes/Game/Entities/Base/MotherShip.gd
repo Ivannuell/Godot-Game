@@ -8,6 +8,7 @@ var orbit_angle = deg_to_rad(180)
 
 func _ready():
 	center = EnemyBase.global_position
+	minerals = 10000
 
 func _physics_process(delta):
 	orbit_angle += delta * 0.01

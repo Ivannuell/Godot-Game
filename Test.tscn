@@ -1,31 +1,31 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene format=3 uid="uid://c4bdhihf2smme"]
 
-[ext_resource path="res://Scenes/Game/Entities/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Game/Entities/Weapons/Launcher/MissileLauncher.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Game/Systems/DamageSystem.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Game/Systems/ShootingSystem.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Game/Entities/Spaceships/Attacker/Attacker.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Game/Systems/DeathSystem.tscn" type="PackedScene" id=6]
+[ext_resource type="PackedScene" uid="uid://dgaiqgns5e8fp" path="res://Scenes/Game/Entities/Player/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c4xdecvwxul2f" path="res://Scenes/Game/Entities/Weapons/Launcher/MissileLauncher.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Scenes/Game/Systems/DamageSystem.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/Game/Systems/ShootingSystem.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://c56aiuspahc8" path="res://Scenes/Game/Entities/Spaceships/Attacker/Attacker.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://Scenes/Game/Systems/DeathSystem.tscn" id="6"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=1205658870]
 
-[node name="DamageSystem" parent="." instance=ExtResource( 3 )]
+[node name="DamageSystem" parent="." unique_id=1473966302 instance=ExtResource("3")]
 
-[node name="ShootingSystem" parent="." instance=ExtResource( 4 )]
+[node name="ShootingSystem" parent="." unique_id=912630286 instance=ExtResource("4")]
 
-[node name="DeathSystem" parent="." instance=ExtResource( 6 )]
+[node name="DeathSystem" parent="." unique_id=2140804333 instance=ExtResource("6")]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 16, 240 )
+[node name="Player" parent="." unique_id=448257989 instance=ExtResource("1")]
+position = Vector2(16, 240)
 
-[node name="MissileLauncher" parent="Player" instance=ExtResource( 2 )]
+[node name="MissileLauncher2" parent="Player" unique_id=2014480357 instance=ExtResource("2")]
 
-[node name="Enemy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 488, 272 )
+[node name="Enemy" parent="." unique_id=955784376 instance=ExtResource("5")]
+position = Vector2(488, 272)
 rotation = -1.55789
 moving = false
 
-[node name="Enemy2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 488, 224 )
+[node name="Enemy2" parent="." unique_id=1999917761 instance=ExtResource("5")]
+position = Vector2(488, 224)
 rotation = -1.58126
 moving = false

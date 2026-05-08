@@ -1,0 +1,46 @@
+# Godot 4+ specific
+.import/
+.godot/
+
+# Imported resources (auto-generated)
+*.import
+
+# Exported binaries / builds
+export.cfg
+export_presets.cfg
+
+# Mono / C# (if using Godot with .NET)
+.mono/
+data_*/
+*.csproj
+*.sln
+
+# Editor-specific files
+.editor/
+*.translation
+
+# OS-specific junk
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.code-workspace
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Godot crash logs
+godot.log

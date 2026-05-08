@@ -62,3 +62,6 @@ func count_enemy_miners():
 	
 func count_enemy_attackers():
 	enemy_attackers = get_tree().get_nodes_in_group("enemy_attackers").size()
+	
+func get_opposite_team(team):
+	return TEAM.PLAYER if team == TEAM.ENEMY else TEAM.ENEMY

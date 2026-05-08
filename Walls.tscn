@@ -1,41 +1,41 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene format=3 uid="uid://cupiscysuheuj"]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 365, 17 )
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(730, 34)
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 25, 241 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(50, 482)
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" unique_id=60349784]
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=1519298353]
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2( 360, -16 )
-shape = SubResource( 2 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=446335109]
+position = Vector2(360, -16)
+shape = SubResource("2")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1886606822]
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -24, 240 )
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1709913397]
+position = Vector2(-24, 240)
+shape = SubResource("1")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=113466106]
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2( 744, 240 )
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=1871698258]
+position = Vector2(744, 240)
+shape = SubResource("1")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=251866823]
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( 360, 495 )
-shape = SubResource( 2 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=874322432]
+position = Vector2(360, 495)
+shape = SubResource("2")

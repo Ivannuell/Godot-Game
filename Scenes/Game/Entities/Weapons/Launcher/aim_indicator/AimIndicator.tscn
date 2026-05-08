@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://by7ew1wlqodjc"]
+
+[node name="AimIndicator" type="Node2D" unique_id=1417750438]
+
+[node name="Line2D" type="Line2D" parent="." unique_id=138639921]
+scale = Vector2(51.890175, 32.93316)
+points = PackedVector2Array(0, -10, 0, 0)
+width = 0.03
+default_color = Color(1, 0, 0, 1)

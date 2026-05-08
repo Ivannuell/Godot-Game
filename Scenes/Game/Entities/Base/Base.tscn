@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Components/Health/Health.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Components/HurtBox/HurtBox.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://d17kwskd0ptye" path="res://Scenes/Game/Entities/Base/SpaceStation.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://cyw1tfbjqdubp" path="res://Scenes/Game/Entities/Components/Shield/Shield.tscn" id="6_45lg1"]
 
 [node name="Base" type="Node2D" unique_id=2010759807]
 script = ExtResource("2")
@@ -26,5 +27,9 @@ max_hp = 1000
 
 [node name="HurtBox" parent="." unique_id=1894617980 instance=ExtResource("4")]
 scale = Vector2(10.0846, 9.60058)
+
+[node name="Shield" parent="." unique_id=726253170 instance=ExtResource("6_45lg1")]
+scale = Vector2(80, 80)
+collision_layer = 8
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]

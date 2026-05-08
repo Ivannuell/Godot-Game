@@ -1,12 +1,14 @@
-extends Area2D
+extends Projectile
+class_name Missile
 
 var rot := 0.0
 var forward = Vector2.UP
-var _owner = null
-var team
 
 const MAX_SPEED = 600
 const DAMAGE = 300
+const ON_HIT_FX = preload("res://Scenes/Game/Entities/Components/FX/Missile_Exlplosion_Sprite/MissileExplosion.tscn")
+
+
 var damage_data = DamageData.new()
 var elapsed = 0.0
 var speed = 0
@@ -21,6 +23,8 @@ func _setup(gun):
 	damage_data.source = _owner
 	damage_data.amount = DAMAGE
 	damage_data.source_team = team
+	
+	damage_data.on_hit_FX = ON_HIT_FX
 
 
 func _physics_process(delta):
@@ -38,5 +42,8 @@ func _on_Missile_area_entered(area):
 	if area.get_parent() == _owner:
 		return
 
+	on_hit(area)
+	
+func on_hit(target):
 	SignalBus.emit_signal('explosion' ,global_position , 200, damage_data)
 	queue_free()

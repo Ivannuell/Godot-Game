@@ -2,10 +2,14 @@ extends Spaceship
 class_name Attacker
 
 @export var moving := true
-
 var target: Node = null
 var to_target := Vector2.ZERO
 var target_rotation := 0.0
+
+@onready var ui = $UIanchor 
+@onready var word_label = $UIanchor/Control/word
+@onready var word_highlight = $"UIanchor/Control/background-highlight"
+
 
 var rotation_speed := 1.5
 
@@ -30,15 +34,22 @@ func _ready():
 	add_to_group("damageable")
 	find_target()
 	randomize()
-	
-	if team == Team.PLAYER:
-		add_to_group("player_attackers")
-	elif team == Team.ENEMY:
-		set_modulate(Color(0.95, 0.55, 0.55))
+		
+	if team == Team.ENEMY:
+		$AnimatedSprite2D.set_modulate(Color(0.95, 0.55, 0.55))
+		word_label.text = str(index) + ". " + word
+		word_highlight.visible = false
+		ui.visible = false
 		add_to_group("enemy_attackers")
+		
+	elif team == Team.PLAYER:
+		ui.visible = false
+		add_to_group("player_attackers")
 
 
 func _physics_process(delta):
+	$UIanchor.rotation = 0
+	
 	match current_State:
 		State.MOVING:
 			move_to_target(delta)
@@ -65,6 +76,23 @@ func _physics_process(delta):
 			change_state(State.MOVING)
 		
 
+#region TypeAttack methods
+func show_word():
+	$UIanchor.visible = true
+
+func hide_word():
+	$UIanchor.visible = false
+
+func update_index(i):
+	index = i
+	word_label.text = str(index) + ". " + word
+
+func activate():
+	word_label.add_theme_color_override("default_color", Color.GREEN)
+	
+func deactivate():
+	word_label.add_theme_color_override("default_color", Color.WHITE)
+#endregion
 
 
 

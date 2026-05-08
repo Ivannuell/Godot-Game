@@ -2,10 +2,177 @@
 
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Components/HurtBox/HurtBox.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Components/Cargo/Cargo.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://bfi68trmvsftc" path="res://Scenes/Game/Entities/Spaceships/Miner/exhaust_03.png" id="2_rsyjw"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Components/Health/Health.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Scenes/Game/Entities/Weapons/MiningTool/MiningTool.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://cn7p3cqi847hp" path="res://Scenes/Game/Entities/Spaceships/Miner/CrabShip.png" id="5"]
 [ext_resource type="Script" uid="uid://1etlc53n3ck4" path="res://Scenes/Game/Entities/Spaceships/Miner/Miner.gd" id="6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtkk3"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(0, 200, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krwtt"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(128, 200, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rt7nu"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(256, 200, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t611c"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(384, 200, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxy41"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(512, 200, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui5hv"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(0, 400, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hobw"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(128, 400, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kos8d"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(256, 400, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwx00"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(384, 400, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sflqw"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(512, 400, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by3lk"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(640, 400, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sym6r"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(768, 400, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsyjw"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(0, 0, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2bfo"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(128, 0, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76uma"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(256, 0, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khyl2"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(0, 0, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62t4v"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(128, 0, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqytf"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(256, 0, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v840g"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(384, 0, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl6f8"]
+atlas = ExtResource("2_rsyjw")
+region = Rect2(512, 0, 128, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p2bfo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtkk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krwtt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rt7nu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t611c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxy41")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui5hv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hobw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kos8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwx00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sflqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by3lk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sym6r")
+}],
+"loop": false,
+"name": &"end",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsyjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2bfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76uma")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khyl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62t4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqytf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v840g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl6f8")
+}],
+"loop": false,
+"name": &"start",
+"speed": 13.0
+}]
 
 [sub_resource type="CircleShape2D" id="1"]
 
@@ -16,6 +183,13 @@ scale = Vector2(0.7, 0.7)
 collision_layer = 9
 collision_mask = 129
 script = ExtResource("6")
+
+[node name="Thrusters" type="AnimatedSprite2D" parent="." unique_id=209055850]
+position = Vector2(-0.00020313263, 40)
+scale = Vector2(0.20907569, 0.28645346)
+sprite_frames = SubResource("SpriteFrames_p2bfo")
+animation = &"idle"
+frame_progress = 0.1726618
 
 [node name="MiningTool" parent="." unique_id=1008387120 instance=ExtResource("4")]
 
@@ -64,3 +238,36 @@ max_hp = 300
 
 [node name="HurtBox" parent="." unique_id=1367566931 instance=ExtResource("1")]
 scale = Vector2(2.6577773, 2.6577773)
+
+[node name="UIanchor" type="Node2D" parent="." unique_id=1463305110]
+
+[node name="Control" type="Control" parent="UIanchor" unique_id=1061694315]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="background-highlight" type="ColorRect" parent="UIanchor/Control" unique_id=1985116210]
+visible = false
+layout_mode = 0
+offset_left = -57.39454
+offset_top = -60.8954
+offset_right = 58.21911
+offset_bottom = -35.19052
+color = Color(0, 1, 0, 1)
+
+[node name="word" type="RichTextLabel" parent="UIanchor/Control" unique_id=1256887970]
+layout_mode = 1
+offset_left = -41.4282
+offset_top = -72.85736
+offset_right = 41.417656
+offset_bottom = -27.85736
+size_flags_horizontal = 4
+text = "word"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="animation_finished" from="Thrusters" to="." method="_on_thrusters_animation_finished"]

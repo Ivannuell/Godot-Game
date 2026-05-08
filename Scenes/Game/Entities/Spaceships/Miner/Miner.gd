@@ -4,8 +4,11 @@ class_name Miner
 var target = null
 @onready var Cargo = $Cargo
 @onready var Base = $"../Base"
-
 @onready var mining_tool = get_node_or_null("MiningTool")
+
+@onready var ui = $UIanchor 
+@onready var word_label = $UIanchor/Control/word
+@onready var word_highlight = $"UIanchor/Control/background-highlight"
 
 enum State {
 	SEARCHING,
@@ -25,21 +28,31 @@ func _ready():
 	dodge_timer = 0.0
 	dodge_duration = 1
 	
+	
+	
 	add_to_group(str(team))
 	
 	if team == Team.ENEMY:
-		set_modulate(Color(0.95, 0.55, 0.55))
+		$Sprite2D.set_modulate(Color(0.95, 0.55, 0.55))
+		word_label.text = str(index) + ". " + word
+		word_highlight.visible = false
+		ui.visible = false
 		add_to_group("enemy_miners")
+		
 	elif team == Team.PLAYER:
+		ui.visible = false
 		add_to_group("player_miners")
 
 func _physics_process(delta):
+	$UIanchor.global_rotation = 0
+	
 	match state:
 		State.SEARCHING:
 			find_target()
 
 		State.MOVING:
 			update_movement(delta, target)
+			
 
 		State.MINING:
 			mine_target(delta)
@@ -48,10 +61,29 @@ func _physics_process(delta):
 			update_movement(delta, Base)
 
 
-# =========================
-# MOVEMENT
-# =========================
+#region TypeAttack methods
 
+func show_word():
+	$UIanchor.visible = true
+
+func hide_word():
+	$UIanchor.visible = false
+
+func update_index(i):
+	index = i
+	word_label.text = str(index) + ". " + word
+
+func activate():
+	word_label.add_theme_color_override("default_color", Color.GREEN)
+	
+func deactivate():
+	word_label.add_theme_color_override("default_color", Color.WHITE)
+	
+#endregion
+	
+
+
+#region Movement
 func update_movement(delta, move_target):
 	if move_target == null or not is_instance_valid(move_target):
 		change_state(State.SEARCHING)
@@ -86,13 +118,12 @@ func update_movement(delta, move_target):
 	# --- Move Forward Based on Current Rotation ---
 	var forward = Vector2.UP.rotated(rotation)
 	set_velocity(forward * SPEED)
+	
+	
 	move_and_slide()
+#endregion
 
-
-# =========================
-# OBSTACLE AVOIDANCE
-# =========================
-
+#region Avoidance Logic
 func get_avoidance_vector():
 	var avoid = Vector2.ZERO
 
@@ -130,26 +161,39 @@ func get_avoidance_vector():
 		dodge_timer = dodge_duration
 			
 	return avoid
+#endregion
 
-
-# =========================
-# STATE LOGIC
-# =========================
-
+#region state-machine logic
 func change_state(new_state):
 	if state == new_state:
 		return
 
-	# Do something before switching from a state
+	var old_state = state
+
+	# --- BEFORE SWITCH ---
 	if state == State.MINING and mining_tool:
 		mining_tool.stop_beam()
 
+	# Leaving movement → play END
+	if state in [State.MOVING, State.RETURNING] \
+	and new_state not in [State.MOVING, State.RETURNING]:
+		$Thrusters.play("end")
+
 	state = new_state
-	
-	# Do something after switching to a new state
+
+	# --- AFTER SWITCH ---
 	if state == State.MINING and mining_tool:
 		mining_tool.start_beam(target)
+		$Thrusters.play("idle")
 
+	elif state in [State.MOVING, State.RETURNING]:
+		# Only play START if we weren’t already moving
+		if old_state not in [State.MOVING, State.RETURNING]:
+			$Thrusters.play("start")
+
+	elif state == State.SEARCHING:
+		$Thrusters.play("idle")
+#endregion
 
 func find_target():
 	if Cargo.current >= Cargo.capacity:
@@ -202,4 +246,14 @@ func receive_damage(damage_data):
 
 func die():
 	SignalBus.emit_signal("cargo_spawned", $Cargo)
-	queue_free()
+	SignalBus.emit_signal("enemy_died", self)
+
+
+func _on_thrusters_animation_finished() -> void:
+	var anim = $Thrusters.animation
+
+	if anim == "start" and state in [State.MOVING, State.RETURNING]:
+		$Thrusters.play("active")
+
+	elif anim == "end":
+		$Thrusters.play("idle")
